@@ -1,11 +1,13 @@
 import Image from "next/image";
+import HomeComponent from "./Components/HomeComponent/HomeComponent";
+import FoodSlider from "./Components/FoodSlider/FoodSlider";
 
 export default function Home() {
   return (
     <div className="min-h-screen text-black font-[family-name:var(--font-geist-sans)]">
 
-     <h1 className="text-2xl font-bold text-center pt-20"> Khabar Lagbe?</h1> 
-     
+     <HomeComponent/>
+     <FoodSlider/>  
     </div>
   );
 }

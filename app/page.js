@@ -2,6 +2,7 @@ import Image from "next/image";
 import HomeComponent from "./Components/HomeComponent/HomeComponent";
 import FoodSlider from "./Components/FoodSlider/FoodSlider";
 import ThreeCard from "./Components/ThreeCard/ThreeCard";
+import DoubleBanner from "./Components/DoubleBanner/DoubleBanner";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
      <HomeComponent/>
      <FoodSlider/>
      <ThreeCard/>  
+     <DoubleBanner/>
     </div>
   );
 }

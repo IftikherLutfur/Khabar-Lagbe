@@ -1,16 +1,45 @@
-"use client"
-import React from 'react';
+"use client";
+import React, { useState } from 'react';
+import { Menu, X } from "lucide-react"; // Icons for the hamburger menu
 
 const Navbar = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
-        <div>
-            <ul className='text-xl justify-between px-10 z-20 absolute w-full text-white bg-zinc-800 bg-opacity-10 uppercase flex items-center py-3'>
-                <li>Home</li>
-                <li>our menus</li>
-                <li>Order online</li>
-                <li>about us</li>
-                <li>Contact us</li>
-            </ul>
+        <div className="bg-zinc-800 bg-opacity-5 shadow-xl fixed w-full z-20">
+            {/* Navbar Container */}
+            <div className="flex items-center justify-between px-6 py-4">
+                {/* Logo */}
+                <h1 className="text-white text-2xl font-bold">Khabar Lagbe?</h1>
+
+                {/* Hamburger Menu (for small screens) */}
+                <div 
+                    className="md:hidden text-white text-3xl cursor-pointer"
+                    onClick={() => setIsOpen(!isOpen)}
+                >
+                    {isOpen ? <X /> : <Menu />}
+                </div>
+
+                {/* Links (Hidden on small screens, visible on medium and larger screens) */}
+                <ul className="hidden md:flex space-x-8 text-white uppercase text-lg">
+                    <li className="hover:text-orange-400 cursor-pointer font-bold">Home</li>
+                    <li className="hover:text-orange-400 cursor-pointer font-bold">Our Menus</li>
+                    <li className="hover:text-orange-400 cursor-pointer font-bold">Order Online</li>
+                    <li className="hover:text-orange-400 cursor-pointer font-bold">About Us</li>
+                    <li className="hover:text-orange-400 cursor-pointer font-bold">Contact Us</li>
+                </ul>
+            </div>
+
+            {/* Dropdown Menu (Visible on small screens when toggled) */}
+            {isOpen && (
+                <ul className="md:hidden flex flex-col space-y-2 text-white uppercase text-lg bg-zinc-800 bg-opacity-90 px-6 py-4">
+                    <li className="hover:text-orange-400 cursor-pointer">Home</li>
+                    <li className="hover:text-orange-400 cursor-pointer">Our Menus</li>
+                    <li className="hover:text-orange-400 cursor-pointer">Order Online</li>
+                    <li className="hover:text-orange-400 cursor-pointer">About Us</li>
+                    <li className="hover:text-orange-400 cursor-pointer">Contact Us</li>
+                </ul>
+            )}
         </div>
     );
 };

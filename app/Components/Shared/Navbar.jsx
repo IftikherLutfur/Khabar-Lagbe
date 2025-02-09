@@ -4,7 +4,7 @@ import React from 'react';
 const Navbar = () => {
     return (
         <div>
-            <ul className='text-xl justify-between px-10 z-20 absolute w-full text-white bg-zinc-800 bg-opacity-20 uppercase flex items-center py-3'>
+            <ul className='text-xl justify-between px-10 z-20 absolute w-full text-white bg-zinc-800 bg-opacity-10 uppercase flex items-center py-3'>
                 <li>Home</li>
                 <li>our menus</li>
                 <li>Order online</li>

@@ -43,14 +43,14 @@ export default function FoodSlider() {
 
   return (
     <div
-      className="wrapper relative flex items-center justify-center min-h-screen bg-cover bg-center"
+      className="wrapper relative flex items-center justify-center h-96 bg-cover pb-10 bg-center"
       style={{
         backgroundImage:
           "url('https://galeriemagazine.com/wp-content/uploads/2021/11/NEW_MAIN_211107_F_KK_BG_0023_HighRes-1920x1200.jpg')",
         backgroundAttachment: "fixed",
       }}
     >
-      <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-md"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
       <div className="scene relative z-10">
         <div
           className="carousel keen-slider mt-5 w-full max-w-2xl p-4 bg-white bg-opacity-80 rounded-lg shadow-lg"
@@ -59,7 +59,7 @@ export default function FoodSlider() {
           {images.map((image, i) => (
             <div key={i} className={`carousel__cell number-slide${i + 1} flex justify-center`}>
               <img
-                className="h-72 w-full object-cover rounded-lg"
+                className="h-80 w-full object-cover rounded-lg"
                 src={image}
                 alt={`Slide ${i + 1}`}
               />

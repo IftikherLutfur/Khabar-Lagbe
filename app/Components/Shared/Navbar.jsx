@@ -11,7 +11,7 @@ const Navbar = () => {
             {/* Navbar Container */}
             <div className="flex items-center justify-between px-6 py-4">
                 {/* Logo */}
-                <h1 className="text-white text-2xl font-bold">Khabar Lagbe?</h1>
+                <h1 className="text-white text-2xl font-bold">HungryNaki?</h1>
 
                 {/* Hamburger Menu (for small screens) */}
                 <div 
@@ -25,7 +25,8 @@ const Navbar = () => {
                 <ul className="hidden md:flex space-x-8 text-white uppercase text-lg">
                     <li className="hover:text-orange-400 cursor-pointer font-bold"><Link href={'/'}>Home</Link></li>
                     <li className="hover:text-orange-400 cursor-pointer font-bold"><Link href="/Menu">Menu</Link></li>
-                    <li className="hover:text-orange-400 cursor-pointer font-bold">Order Online</li>
+                    <li className="hover:text-orange-400 cursor-pointer font-bold">
+                        <Link href="/OnlineOrder">Order Online</Link> </li>
                     <li className="hover:text-orange-400 cursor-pointer font-bold">About Us</li>
                     <li className="hover:text-orange-400 cursor-pointer font-bold">Contact Us</li>
                 </ul>

@@ -1,7 +1,8 @@
-"use client"
+"use client";
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Title from '../Components/Title/Title';
+import Link from 'next/link';
 
 const FoodsPage = () => {
   const [foods, setFoods] = useState([]);
@@ -27,8 +28,8 @@ const FoodsPage = () => {
       {/* Section Header */}
       <div className="text-center">
         <Title
-        SubHeading={"khabar Lagbe? "}
-        Heading={"our menus"}
+          SubHeading={"HungryNaki? "}
+          Heading={"our menus"}
         />
         <p className='uppercase my-6 text-sm md:text-lg'>
           Smoked brisket, tender ribs, smoked sausage, bacon & cheddar with <br className="hidden md:block" /> 
@@ -37,37 +38,44 @@ const FoodsPage = () => {
       </div>
 
       {/* Food Items List */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {foods.map((food) => (
           <div 
             key={food._id} 
-            className='bg-zinc-800 rounded-lg p-5  flex-col md:flex-row items-center gap-5 shadow-md'
+            className='bg-zinc-800 rounded-lg p-5 flex-col md:flex-row items-center gap-5 shadow-md'
           >
             <div className='flex justify-center'>
-            <img 
-              className='w-48 h-36 object-cover rounded-md' 
-              src={food.images || "https://grandrestaurantv6.b-cdn.net/grandrestaurantv6/demo9/wp-content/uploads/sites/9/2021/01/beef-burger.png"} 
-              alt={food.name} 
-            />
-            <div className='text-lg font-bold text-orange-400 absolute ml-48'>{food.price}Tk</div>
+              <img 
+                className='w-40 h-32 sm:w-48 sm:h-36 object-cover rounded-md' 
+                src={food.images || "https://grandrestaurantv6.b-cdn.net/grandrestaurantv6/demo9/wp-content/uploads/sites/9/2021/01/beef-burger.png"} 
+                alt={food.name} 
+              />
+              <div className='text-lg font-bold text-orange-400 absolute ml-48'>{food.price} Tk</div>
             </div>
             <div className='flex-1 text-center md:text-left'>
-              <h1 className='text-xl uppercase font-bold'>{food.name}</h1>
-              <p className='font-semibold'>Ingredients:⤵️</p>
-              {<ul className='grid grid-cols-3 gap-1 text-xs'>{food.ingredients.map((ind,index)=><p key={index}>▫️{ind}</p>)}</ul>}
+              <h1 className='text-lg sm:text-xl md:text-2xl uppercase font-bold'>{food.name}</h1>
+              <p className='font-semibold mt-2'>Ingredients:⤵️</p>
+              {food.ingredients && (
+                <ul className='grid grid-cols-2 sm:grid-cols-3 gap-1 text-xs sm:text-sm'>
+                  {food.ingredients.map((ind, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="text-orange-500">▫️</span> {ind}
+                    </li>
+                  ))}
+                </ul>
+              )}
               <p className='text-sm text-gray-300 mt-2'>
                 {food.description}
               </p>
             </div>
-            
           </div>
         ))}
       </div>
 
       {/* Order Button */}
       <div className="flex justify-center mt-10">
-        <button className='text-xl font-bold uppercase py-3 px-8 bg-red-500 rounded-md hover:bg-red-600 transition'>
-          ORDER ONLINE
+        <button className='text-lg sm:text-xl uppercase font-bold uppercase py-3 px-8 bg-red-500 rounded-md hover:bg-red-600 transition'>
+        <Link href="/OnlineOrder">Order Online</Link>
         </button>
       </div>
     </div>
@@ -75,8 +83,3 @@ const FoodsPage = () => {
 };
 
 export default FoodsPage;
-
-
-
-
-// <p className='text-xl font-bold text-center text-orange-400'>/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / </p>

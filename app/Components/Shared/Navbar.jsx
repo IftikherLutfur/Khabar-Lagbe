@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { Menu, X } from "lucide-react"; // Icons for the hamburger menu
+import Link from 'next/link';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -22,8 +23,8 @@ const Navbar = () => {
 
                 {/* Links (Hidden on small screens, visible on medium and larger screens) */}
                 <ul className="hidden md:flex space-x-8 text-white uppercase text-lg">
-                    <li className="hover:text-orange-400 cursor-pointer font-bold">Home</li>
-                    <li className="hover:text-orange-400 cursor-pointer font-bold">Our Menus</li>
+                    <li className="hover:text-orange-400 cursor-pointer font-bold"><Link href={'/'}>Home</Link></li>
+                    <li className="hover:text-orange-400 cursor-pointer font-bold"><Link href="/Menu">Menu</Link></li>
                     <li className="hover:text-orange-400 cursor-pointer font-bold">Order Online</li>
                     <li className="hover:text-orange-400 cursor-pointer font-bold">About Us</li>
                     <li className="hover:text-orange-400 cursor-pointer font-bold">Contact Us</li>

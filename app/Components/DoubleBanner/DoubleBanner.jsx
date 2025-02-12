@@ -44,7 +44,7 @@ const DoubleBanner = () => {
               <div className="flex-1 border-t-2 border-white"></div>
             </div>
             <h1 className="text-center text-4xl md:text-5xl lg:text-6xl font-bold">
-              Fresh <br /> Salad
+              <span className="text-green-400">Fresh</span> <br /> Salad
             </h1>
             <p className="text-lg md:text-xl font-bold uppercase text-center mt-5 mx-4 md:mx-8 lg:mx-16 mb-6">
               Life is like a burger; the more you add to it, the better it becomes
@@ -53,7 +53,7 @@ const DoubleBanner = () => {
               Doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi. Sed ut perspiciatis unde omnis iste natus error sit.
             </p>
             <div className="flex justify-center mt-8">
-              <button className="bg-red-600 font-bold text-white text-lg md:text-xl px-6 py-2 rounded-sm">
+              <button className="bg-green-600 font-bold text-white text-lg md:text-xl px-6 py-2 rounded-sm">
                 VIEW MENUS
               </button>
             </div>

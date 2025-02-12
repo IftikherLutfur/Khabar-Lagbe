@@ -12,7 +12,7 @@ const ThreeCard = () => {
             <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 text-white">
                 {/* Left Card */}
                 <div className="bg-white w-full md:w-80 h-[400px] flex flex-col justify-center items-center rounded-lg p-6">
-                    <h1 className="uppercase text-black text-lg md:text-2xl font-bold">order online</h1>
+                    <h1 className="uppercase text-black text-lg md:text-2xl font-bold">our menus</h1>
                     <p className="text-black text-opacity-75 my-3 text-sm md:text-base text-center">
                         Doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi. Sed ut perspiciatis unde omnis iste natus error sit.
                     </p>

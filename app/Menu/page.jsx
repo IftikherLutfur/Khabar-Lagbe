@@ -74,7 +74,7 @@ const FoodsPage = () => {
 
       {/* Order Button */}
       <div className="flex justify-center mt-10">
-        <button className='text-lg sm:text-xl uppercase font-bold uppercase py-3 px-8 bg-red-500 rounded-md hover:bg-red-600 transition'>
+        <button className='text-lg sm:text-xl  font-bold uppercase py-3 px-8 bg-red-500 rounded-md hover:bg-red-600 transition'>
         <Link href="/OnlineOrder">Order Online</Link>
         </button>
       </div>

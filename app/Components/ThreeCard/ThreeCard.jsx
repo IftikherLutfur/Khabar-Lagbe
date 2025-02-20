@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const ThreeCard = () => {
     return (
         <div className="py-8">
@@ -16,9 +18,9 @@ const ThreeCard = () => {
                     <p className="text-black text-opacity-75 my-3 text-sm md:text-base text-center">
                         Doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi. Sed ut perspiciatis unde omnis iste natus error sit.
                     </p>
-                    <button className="bg-orange-400 rounded-sm text-sm md:text-xl font-bold px-4 py-2">
+                    <Link href="/Menu"><button className="bg-orange-400 rounded-sm text-sm md:text-xl font-bold px-4 py-2">
                         VIEW MENUS
-                    </button>
+                    </button></Link>
                 </div>
 
                 {/* Middle Image Card */}
@@ -36,9 +38,9 @@ const ThreeCard = () => {
                     <p className="text-black text-opacity-75 my-3 text-sm md:text-base text-center">
                         Doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi. Sed ut perspiciatis unde omnis iste natus error sit.
                     </p>
-                    <button className="bg-black text-white rounded-sm text-sm md:text-xl font-bold px-4 py-2">
+                    <Link href="/OnlineOrder"><button className="bg-black text-white rounded-sm text-sm md:text-xl font-bold px-4 py-2">
                         ORDER ONLINE
-                    </button>
+                    </button></Link>
                 </div>
             </div>
         </div>

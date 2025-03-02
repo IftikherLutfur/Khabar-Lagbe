@@ -1,6 +1,13 @@
+import { getServerSession } from "next-auth";
 import React from "react";
+import { authOption } from "../api/auth/[...nextauth]/route";
 
-const BookProgram = () => {
+const BookProgram =async () => {
+
+  const session = await getServerSession(authOption)
+  console.log({session});
+  
+
   return (
     <div
       className="min-h-screen flex items-center justify-center bg-cover bg-center relative py-12"

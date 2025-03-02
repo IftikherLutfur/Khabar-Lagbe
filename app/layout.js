@@ -2,6 +2,7 @@ import {  Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Components/Shared/Navbar";
 import Footer from "./Components/Shared/Footer";
+import AuthProvider from "./services/AuthProvider";
 
 
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
 
+<AuthProvider>
       <body className="">
         <nav>
           <Navbar/>
@@ -26,6 +28,7 @@ export default function RootLayout({ children }) {
         {children}
      <Footer/>
       </body>
+      </AuthProvider>
     </html>
   );
 }

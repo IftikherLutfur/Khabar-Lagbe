@@ -1,3 +1,4 @@
+import { ConnectDB } from "@/lib/ConnectDB";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials"
 
@@ -21,7 +22,12 @@ export const authOption = {
                 }
 
                 if(email){
-                    const currentUser = user.find((user)=>user.email === email)
+                    // const currentUser = user.find((user)=>user.email === email)
+                    const db = await ConnectDB()
+                    const currentUser =await db.collection('users').findOne({email})
+                     console.log(currentUser);
+                     
+
                     if(currentUser){
                         if(currentUser.password === password){
                             return currentUser
@@ -61,7 +67,7 @@ const user = [
       "id": 2,
       "email": "user2@example.com",
       "password": "securePass456",
-      "type": "admin"
+      "type": "user"
     },
     {
       "id": 3,

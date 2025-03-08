@@ -1,6 +1,8 @@
 import { ConnectDB } from "@/lib/ConnectDB";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials"
+import GoogleProvider from "next-auth/providers/google"
+import FacebookProvider from "next-auth/providers/facebook"
 
 export const authOption = {
     secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
@@ -36,6 +38,14 @@ export const authOption = {
             }
 
 
+        }),
+        GoogleProvider({
+          clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+          clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET
+        }),
+        FacebookProvider({
+          clientId: process.env.FACEBOOK_CLIENT_ID,
+          clientSecret: process.env.FACEBOOK_CLIENT_SECRET
         })
     ],
 
@@ -56,26 +66,7 @@ export const authOption = {
 }
 const handler = NextAuth(authOption)
 
-const user = [
-    {
-      "id": 1,
-      "email": "user1@example.com",
-      "password": "password123",
-      "type": "admin"
-    },
-    {
-      "id": 2,
-      "email": "user2@example.com",
-      "password": "securePass456",
-      "type": "user"
-    },
-    {
-      "id": 3,
-      "email": "user3@example.com",
-      "password": "mySecret789",
-      "type": "admin"
-    }
-  ]
+
   
 
 export { handler as GET, handler as POST }

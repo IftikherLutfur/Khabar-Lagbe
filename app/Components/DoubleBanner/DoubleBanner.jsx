@@ -4,7 +4,7 @@ const DoubleBanner = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
   
           {/* First image div */}
-          <div>
+          <div className="">
             <img
               className="h-[300px] md:h-[400px] lg:h-[600px] w-full object-cover"
               src="https://i.pinimg.com/736x/a8/00/5d/a8005dea85c5ff3e559a6462c357ecdd.jpg"

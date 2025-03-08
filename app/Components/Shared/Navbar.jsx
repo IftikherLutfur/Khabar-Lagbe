@@ -37,7 +37,7 @@ const Navbar = () => {
                         "authenticated" ? 
                         <button onClick={()=> signOut()} className="hover:text-orange-400 bg-zinc-900 px-2 rounded-md cursor-pointer">
                         Logout</button> : <div className=' bg-zinc-900 cursor-pointer rounded-md py-1 px-2'>
-                        <button className='hover:text-orange-400 bg-zinc-900 px-2'><Link href={'/api/auth/signin'}>Login</Link></button>
+                        <button className='hover:text-orange-400 bg-zinc-900 border-r-2 px-2'><Link href={'/api/auth/signin'}>Login</Link></button>
                         <button className='hover:text-orange-400 bg-zinc-900 px-2'><Link href={'/api/auth/signup'}>Register</Link></button>
                         </div>  }
                 </ul>

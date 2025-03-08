@@ -3,8 +3,11 @@ import React from "react";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import { FaGoogle, FaTwitter, FaGithub } from "react-icons/fa";
+import { useRouter } from "next/navigation"; // Import useRouter
 
 const SignUp = () => {
+    const router = useRouter(); // Initialize useRouter
+
     const handleRegister = async (e) => {
         e.preventDefault();
         const newUser = {
@@ -21,8 +24,9 @@ const SignUp = () => {
             );
 
             if (res.status === 201) {
-                toast.success("Registration successful!");
-                e.target.reset();
+                toast.sucees("Registration done!"); // Show alert
+                e.target.reset(); // Reset form
+                router.push("/"); // Navigate to root page
             } else {
                 toast.error("Registration failed. Please try again.");
             }

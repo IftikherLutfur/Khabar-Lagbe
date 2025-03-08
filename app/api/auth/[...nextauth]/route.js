@@ -3,6 +3,8 @@ import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google"
 import FacebookProvider from "next-auth/providers/facebook"
+import bcrypt from "bcrypt";
+import { signIn } from "next-auth/react";
 
 export const authOption = {
     secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
@@ -19,22 +21,23 @@ export const authOption = {
 
             async authorize(credentials) {
                 const {email, password} = credentials;
-                if (!credentials) {
+                if (!email || !password) {
                     return null
                 }
 
-                if(email){
                     // const currentUser = user.find((user)=>user.email === email)
                     const db = await ConnectDB()
                     const currentUser =await db.collection('users').findOne({email})
                      console.log(currentUser);
-                     
-
-                    if(currentUser){
-                        if(currentUser.password === password){
-                            return currentUser
-                        }}}
-                return null
+                     if(!currentUser){
+                      return null;
+                     }
+                      
+                     const passworMatched = bcrypt.compareSync(password, currentUser.password);
+                     if(!passworMatched){
+                      return null;
+                     }
+                     return currentUser;
             }
 
 
@@ -62,6 +65,9 @@ export const authOption = {
             session.user.type = token.type
             return session;
           },
+    },
+    pages:{
+      signIn: 'signin'
     }
 }
 const handler = NextAuth(authOption)

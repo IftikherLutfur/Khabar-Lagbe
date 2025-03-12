@@ -7,6 +7,10 @@ import Link from 'next/link';
 const FoodsPage = () => {
   const [foods, setFoods] = useState([]);
 
+
+
+  
+
   useEffect(() => {
     const fetchFoods = async () => {
       try {
@@ -36,6 +40,9 @@ const FoodsPage = () => {
           lettuce, tomato, house BBQ & ranch.
         </p>
       </div>
+
+
+     
 
       {/* Food Items List */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">

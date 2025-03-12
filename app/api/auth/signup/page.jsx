@@ -1,32 +1,64 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import { FaGoogle, FaTwitter, FaGithub } from "react-icons/fa";
-import { useRouter } from "next/navigation"; // Import useRouter
+import { useRouter } from "next/navigation"; // Corrected useRouter import
 
 const SignUp = () => {
-    const router = useRouter(); // Initialize useRouter
+    const image_hosting_key = process.env.NEXT_PUBLIC_IMAGE_HOSTING_KEY;
+    const image_hosting = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-    const handleRegister = async (e) => {
-        e.preventDefault();
-        const newUser = {
-            name: e.target.name.value,
-            email: e.target.email.value,
-            password: e.target.password.value,
-            type: "user",
-        };
+    const router = useRouter(); // Initialize useRouter
+    const [profilePhoto, setProfilePhoto] = useState(null);
+
+    // Upload image to imgbb
+    const uploadImageToImgbb = async (imageFile) => {
+        const formData = new FormData();
+        formData.append("image", imageFile);
 
         try {
+            const response = await axios.post(image_hosting, formData, {
+                headers: { "Content-Type": "multipart/form-data" },
+            });
+            return response.data.data.display_url; // Return uploaded image URL
+        } catch (error) {
+            console.error("Image upload failed:", error);
+            throw new Error("Failed to upload image. Please try again.");
+        }
+    };
+
+    // Handle registration
+    const handleRegister = async (e) => {
+        e.preventDefault();
+
+        if (!profilePhoto) {
+            toast.error("Please upload a profile image.");
+            return;
+        }
+
+        try {
+            // Upload image and get URL
+            const profilePhotoUrl = await uploadImageToImgbb(profilePhoto);
+
+            const newUser = {
+                name: e.target.name.value,
+                email: e.target.email.value,
+                password: e.target.password.value,
+                image: profilePhotoUrl,
+                type: "user",
+            };
+
             const res = await axios.post(
                 `${process.env.NEXT_PUBLIC_WEB_URL}/api/auth/signup/new-user`,
                 newUser
             );
 
             if (res.status === 201) {
-                toast.sucees("Registration done!"); // Show alert
-                e.target.reset(); // Reset form
-                router.push("/"); // Navigate to root page
+                toast.success("Registration successful!");
+                e.target.reset();
+                setProfilePhoto(null);
+                router.push("/"); // Redirect to home page
             } else {
                 toast.error("Registration failed. Please try again.");
             }
@@ -44,10 +76,7 @@ const SignUp = () => {
                 <form onSubmit={handleRegister} className="space-y-6">
                     <div className="space-y-4">
                         <div>
-                            <label
-                                htmlFor="username"
-                                className="block text-sm font-medium text-indigo-800"
-                            >
+                            <label htmlFor="username" className="block text-sm font-medium text-indigo-800">
                                 Name
                             </label>
                             <input
@@ -60,10 +89,7 @@ const SignUp = () => {
                             />
                         </div>
                         <div>
-                            <label
-                                htmlFor="email"
-                                className="block text-sm font-medium text-indigo-800"
-                            >
+                            <label htmlFor="email" className="block text-sm font-medium text-indigo-800">
                                 Email
                             </label>
                             <input
@@ -76,10 +102,7 @@ const SignUp = () => {
                             />
                         </div>
                         <div>
-                            <label
-                                htmlFor="password"
-                                className="block text-sm font-medium text-indigo-800"
-                            >
+                            <label htmlFor="password" className="block text-sm font-medium text-indigo-800">
                                 Password
                             </label>
                             <input
@@ -88,6 +111,21 @@ const SignUp = () => {
                                 id="password"
                                 placeholder="********"
                                 className="w-full px-4 py-2 mt-1 rounded-lg border border-indigo-300 focus:outline-none focus:border-indigo-600"
+                                required
+                            />
+                        </div>
+
+                        {/* Profile Image Upload */}
+                        <div>
+                            <label htmlFor="profile-image" className="block text-sm font-medium text-indigo-800">
+                                Profile Image
+                            </label>
+                            <input
+                                type="file"
+                                id="profile-image"
+                                accept="image/*"
+                                className="w-full px-4 py-2 mt-1 rounded-lg border border-indigo-300 focus:outline-none focus:border-indigo-600"
+                                onChange={(e) => setProfilePhoto(e.target.files[0])}
                                 required
                             />
                         </div>

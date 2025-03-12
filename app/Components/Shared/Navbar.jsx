@@ -6,9 +6,8 @@ import { signOut, useSession } from 'next-auth/react';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const session = useSession()
-    console.log(session);
-
+    const [showUserOptions, setShowUserOptions] = useState(false);
+    const session = useSession();
 
     return (
         <div className="bg-zinc-800 bg-opacity-5 shadow-xl fixed w-full z-20">
@@ -31,15 +30,38 @@ const Navbar = () => {
                     <li className="hover:text-orange-400 cursor-pointer font-bold"><Link href="/Menu">Menu</Link></li>
                     <li className="hover:text-orange-400 cursor-pointer font-bold">
                         <Link href="/OnlineOrder">Order Online</Link> </li>
-                    <li className="hover:text-orange-400 cursor-pointer font-bold">About Us</li>
+                    <li className="hover:text-orange-400 cursor-pointer font-bold"><Link href="/Components/AboutUs">About Us</Link></li>
                     <li className="hover:text-orange-400 cursor-pointer font-bold">Contact Us</li>
-                    {session.status ===
-                        "authenticated" ? 
-                        <button onClick={()=> signOut()} className="hover:text-orange-400 bg-zinc-900 px-2 rounded-md cursor-pointer">
-                        Logout</button> : <div className=' bg-zinc-900 cursor-pointer rounded-md py-1 px-2'>
-                        <button className='hover:text-orange-400 bg-zinc-900 border-r-2 px-2'><Link href={'/api/auth/signin'}>Login</Link></button>
-                        <button className='hover:text-orange-400 bg-zinc-900 px-2'><Link href={'/api/auth/signup'}>Register</Link></button>
-                        </div>  }
+
+                    {session.status === "authenticated" ? (
+                        <div className="relative">
+                            {/* User Image (Click to toggle options) */}
+                            <img
+                                className="w-[50px] h-[50px] rounded-full cursor-pointer"
+                                src={session?.data?.user?.image}
+                                alt="User"
+                                onClick={() => setShowUserOptions(!showUserOptions)}
+                            />
+
+                            {/* User Dropdown */}
+                            {showUserOptions && (
+                                <div className="absolute right-0 mt-2 w-48 bg-zinc-900 shadow-lg rounded-lg p-3">
+                                    <p className="text-white font-bold">{session?.data?.user?.name}</p>
+                                    <button
+                                        onClick={() => signOut()}
+                                        className="w-full mt-2 bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700"
+                                    >
+                                        Logout
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        <div className="bg-zinc-900 cursor-pointer rounded-md py-1 px-2">
+                            <button className="hover:text-orange-400 bg-zinc-900 border-r-2 px-2"><Link href={'/api/auth/signin'}>Login</Link></button>
+                            <button className="hover:text-orange-400 bg-zinc-900 px-2"><Link href={'/api/auth/signup'}>Register</Link></button>
+                        </div>
+                    )}
                 </ul>
             </div>
 
@@ -50,15 +72,18 @@ const Navbar = () => {
                     <li className="hover:text-orange-400 cursor-pointer font-bold"><Link href="/Menu">Menu</Link></li>
                     <li className="hover:text-orange-400 cursor-pointer font-bold">
                         <Link href="/OnlineOrder">Order Online</Link> </li>
-                    <li className="hover:text-orange-400 cursor-pointer">About Us</li>
+                    <li className="hover:text-orange-400 cursor-pointer"><Link href={'/AboutUs'}>About Us</Link></li>
                     <li className="hover:text-orange-400 cursor-pointer">Contact Us</li>
-                    {session.status ===
-                        "authenticated" ? 
-                        <button onClick={()=> signOut()} className="hover:text-orange-400 bg-zinc-900 px-2 rounded-md cursor-pointer">
-                        Logout</button> : <div className='hover:text-orange-400 bg-zinc-900 cursor-pointer px-2'>
-                        <button className='hover:text-orange-400 bg-zinc-900 cursor-pointer px-2'><Link href={'/api/auth/signin'}>Login</Link></button>
-                        <button className='hover:text-orange-400 bg-zinc-900 cursor-pointer px-2'><Link href={'/api/auth/signup'}>Register</Link></button>
-                        </div>  }
+                    {session.status === "authenticated" ? (
+                        <button onClick={() => signOut()} className="hover:text-orange-400 bg-zinc-900 px-2 rounded-md cursor-pointer">
+                            Logout
+                        </button>
+                    ) : (
+                        <div className="hover:text-orange-400 bg-zinc-900 cursor-pointer px-2">
+                            <button className="hover:text-orange-400 bg-zinc-900 cursor-pointer px-2"><Link href={'/api/auth/signin'}>Login</Link></button>
+                            <button className="hover:text-orange-400 bg-zinc-900 cursor-pointer px-2"><Link href={'/api/auth/signup'}>Register</Link></button>
+                        </div>
+                    )}
                 </ul>
             )}
         </div>

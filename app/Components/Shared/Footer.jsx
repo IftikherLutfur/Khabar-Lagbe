@@ -2,8 +2,8 @@
 const Footer = () => {
     return (
         <div className="py-5 text-black bg-white text-center">
-
-            <div>
+<hr />
+            <div className="mt-5">
                 <h1 className="text-center text-3xl border-[1px] font-semibold mx-[500px] border-black">HungryNaki?</h1>
                 <div>
                     <div className="flex items-center gap-10 my-2 justify-center">

@@ -37,7 +37,7 @@ const Navbar = () => {
                         <div className="relative">
                             {/* User Image (Click to toggle options) */}
                             <img
-                                className="w-[50px] h-[50px] rounded-full cursor-pointer"
+                                className="w-[55px] h-[50px] rounded-full cursor-pointer"
                                 src={session?.data?.user?.image}
                                 alt="User"
                                 onClick={() => setShowUserOptions(!showUserOptions)}
@@ -47,6 +47,7 @@ const Navbar = () => {
                             {showUserOptions && (
                                 <div className="absolute right-0 mt-2 w-48 bg-zinc-900 shadow-lg rounded-lg p-3">
                                     <p className="text-white font-bold">{session?.data?.user?.name}</p>
+                                    {session?.data?.user?.type === "admin" && <p className='text-white font-semibold border-[1px] text-center rounded-md'><Link href={'/AdminRoutes/Dashboard'}>Dashboard</Link></p>}
                                     <button
                                         onClick={() => signOut()}
                                         className="w-full mt-2 bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700"

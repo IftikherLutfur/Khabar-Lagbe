@@ -1,16 +1,24 @@
-import { cookies } from "next/headers"
+import { getToken } from "next-auth/jwt";
+import { NextResponse } from "next/server";
 
-const { NextResponse } = require("next/server")
+export const middleware = async (req) => {
+    const token = await getToken({ req, secret: process.env.NEXT_PUBLIC_AUTH_SECRET });
 
-export const middleware = async (request)=>{
-    const token = await cookies(request).get('next-auth.session-token')
-    console.log(token, "Token");
-    
-    if(!token){
-        return NextResponse.redirect(new URL('/api/auth/signin', request.url))
+    console.log(token, "Decoded Token"); // Debugging
+
+    // যদি ইউজার লগইন না করে থাকে
+    if (!token) {
+        return NextResponse.redirect(new URL("/api/auth/signin", req.url));
     }
-    return NextResponse.next()
-}
+
+    // যদি ইউজার অ্যাডমিন না হয় এবং সে `/admin` রুটে যেতে চায়
+    if (req.nextUrl.pathname.startsWith("/AdminRoutes") && token.type !== "admin") {
+        return NextResponse.redirect(new URL("/unauthorized", req.url));
+    }
+
+    return NextResponse.next();
+};
+
 export const config = {
-    matcher : ['/BookProgram']
-}
+    matcher: ["/AdminRoutes/:path*", "/BookProgram"],
+};

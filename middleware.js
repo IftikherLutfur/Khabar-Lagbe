@@ -20,5 +20,5 @@ export const middleware = async (req) => {
 };
 
 export const config = {
-    matcher: ["/AdminRoutes/:path*", "/BookProgram"],
+    matcher: ["/AdminRoutes/:path*", "/BookProgram","/OnlineOrder/:path*"],
 };

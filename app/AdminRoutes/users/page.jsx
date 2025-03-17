@@ -72,9 +72,9 @@ const Users = () => {
     <div className="pt-20 min-h-screen bg-zinc-800 flex">
       <Sidebar />
       <div className="w-full max-w-4xl flex justify-center">
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg mx-4">
+        <div className="relative overflow-x-auto rounded-lg shadow-md sm:rounded-lg mx-4">
           <h1 className="text-xl text-white text-center mb-4">User Management</h1>
-          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <table className="w-full rounded-md text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
                 <th className="px-6 py-3">Name</th>

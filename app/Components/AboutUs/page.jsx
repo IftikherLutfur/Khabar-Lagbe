@@ -18,14 +18,14 @@ const AboutUs = () => {
         slides: { perView: 1 },
     })
     return (
-        <div className="pt-20 pb-10 min-h-screen px-5 bg-[#08252b] lg:px-20">
+        <div className="pt-20 pb-10 min-h-screen px-5 bg-[#051a1f] lg:px-20">
             {/* Hero Section */}
             <div className="flex flex-col lg:flex-row gap-10 items-center">
                 {/* Text Section */}
-                <div className="flex-1 bg-gray-100 p-6 rounded-md hover:border-2 border-orange-400 shadow-lg">
+                <div className="flex-1 bg-[#051a1f]  bg-opacity-80 p-6 rounded-md  border-orange-400 shadow-2xl">
                     <h1 className="text-3xl font-bold text-orange-500">HungryNaki</h1>
-                    <p className="text-lg font-semibold mb-3 text-gray-700">How it started</p>
-                    <p className="text-gray-600 text-justify">
+                    <p className="text-lg font-semibold mb-3 text-gray-300">How it started ?</p>
+                    <p className="text-gray-400 text-justify">
                         Our journey began with a simple yet ambitious dream—to create a place where people could enjoy high-quality food with a unique experience.
                         HungryNaki started as a small, family-like restaurant, fueled by our passion for delicious food and warm hospitality.
                         <br /><br />
@@ -46,20 +46,20 @@ const AboutUs = () => {
                     />
 
                     {/* Status */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center mt-3 bg-white p-4 rounded-md shadow-md">
-                        <div className="bg-orange-500 font-bold text-white p-3 rounded-md shadow-sm">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center mt-3  p-4 rounded-md shadow-2xl">
+                        <div className="border-l-2 bg-sky-600 border-b-2 rounded-r-2xl border-t-2 bg-opacity-90 font-bold text-white p-3 rounded-md shadow-sm">
                             <span className="text-xl">1K+</span> <br />
-                            Happy Customers
+                            <small className='text-xs'>Happy Customers</small>
                         </div>
-                        <div className="bg-orange-500 font-bold text-white p-3 rounded-md shadow-sm">
+                        <div className="border-b-2 border-t-2 bg-sky-600 font-bold rounded-l-2xl rounded-r-2xl text-white p-3 rounded-md shadow-sm">
                             <span className="text-xl">500+</span> <br />
                             Reviews
                         </div>
-                        <div className="bg-orange-500 font-bold text-white p-3 rounded-md shadow-sm">
+                        <div className="border-b-2 font-bold border-t-2 bg-sky-600 rounded-l-2xl rounded-r-2xl text-white p-3 rounded-md shadow-sm">
                             <span className="text-xl">50+</span> <br />
                             Food Items
                         </div>
-                        <div className="bg-orange-500 font-bold text-white p-3 rounded-md shadow-sm">
+                        <div className="border-b-2 border-r-2 font-bold border-t-2 bg-sky-600 rounded-l-2xl text-white p-3 rounded-md shadow-sm">
                             On-time <br />
                             Delivery
                         </div>

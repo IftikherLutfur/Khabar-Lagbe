@@ -2,11 +2,19 @@
 import React from 'react';
 import { ChevronDownIcon } from "lucide-react";
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
+import img from '../Pictures/48ebc1dd59c5e12e128113991e086f82.png'
+import Image from 'next/image';
 
 const FAQ = () => {
     return (
         <div>
             <h1 className='text-3xl text-center font-semibold text-white mt-6'>FAQ</h1>
+            <Image
+            className='absolute left-20'
+            src={img}
+            alt='banner'
+            height={350}
+            />
             <p className="text-center text-white">Frequently ask question</p>
             <div className=" w-full py-5 px-4">
       <div className="mx-auto w-full max-w-lg divide-y divide-white/5 rounded-xl bg-white/5">

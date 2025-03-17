@@ -54,7 +54,7 @@ const FoodsPage = () => {
             <div className='flex justify-center'>
               <img 
                 className='w-40 h-32 sm:w-48 sm:h-36 object-cover rounded-md' 
-                src={food.images || "https://grandrestaurantv6.b-cdn.net/grandrestaurantv6/demo9/wp-content/uploads/sites/9/2021/01/beef-burger.png"} 
+                src={food.image || "https://grandrestaurantv6.b-cdn.net/grandrestaurantv6/demo9/wp-content/uploads/sites/9/2021/01/beef-burger.png"} 
                 alt={food.name} 
               />
               <div className='text-lg font-bold text-orange-400 absolute ml-48'>{food.price} Tk</div>

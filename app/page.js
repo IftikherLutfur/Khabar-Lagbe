@@ -3,7 +3,6 @@ import HomeComponent from "./Components/HomeComponent/HomeComponent";
 import FoodSlider from "./Components/FoodSlider/FoodSlider";
 import ThreeCard from "./Components/ThreeCard/ThreeCard";
 import DoubleBanner from "./Components/DoubleBanner/DoubleBanner";
-import Title from "./Components/Title/Title";
 import Link from "next/link";
 import FAQ from "./Components/FAQ/FAQ";
 

@@ -1,50 +1,133 @@
+import Image from "next/image";
 import Link from "next/link";
+import bunWithHoney from "../Pictures/Bun with honey.png";
+import biriyani from "../Pictures/biriyani.png";
+import dinner from "../Pictures/Background - 2025-03-20T162027.677.png";
 
 const ThreeCard = () => {
-    return (
-        <div className="py-8">
-            {/* Title Section */}
-            <div className="flex items-center justify-center px-8 md:px-36 py-4">
-                <div className="flex-1 border-t border-orange-500"></div>
-                <span className="mx-4 text-orange-500 font-bold text-lg md:text-xl">HAVE IT YOUR WAY</span>
-                <div className="flex-1 border-t border-orange-500"></div>
-            </div>
-
-            {/* Cards Section */}
-            <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 text-white">
-                {/* Left Card */}
-                <div className="bg-white w-full md:w-80 h-[400px] flex flex-col justify-center items-center rounded-lg transform transition-all duration-500 hover:scale-105 p-6">
-                    <h1 className="uppercase text-black text-lg md:text-2xl font-bold">our menus</h1>
-                    <p className="text-black text-opacity-75 my-3 text-sm md:text-base text-center">
-                        Doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi. Sed ut perspiciatis unde omnis iste natus error sit.
-                    </p>
-                    <Link href="/Menu"><button className="bg-orange-400 rounded-sm text-sm md:text-xl font-bold px-4 py-2">
-                        VIEW MENUS
-                    </button></Link>
-                </div>
-
-                {/* Middle Image Card */}
-                <div className="w-full md:w-80 h-[400px]">
-                    <img
-                        className="w-full h-full object-cover rounded-lg"
-                        src="https://i.pinimg.com/736x/66/99/d9/6699d9685050b97dbf573cd91a336d2c.jpg"
-                        alt="Delicious food"
-                    />
-                </div>
-
-                {/* Right Card */}
-                <div className="bg-zinc-200 w-full md:w-80 h-[400px] flex flex-col justify-center items-center rounded-lg p-6 transform transition-all duration-500 hover:scale-105">
-                    <h1 className="uppercase text-black text-lg md:text-2xl font-bold">order online</h1>
-                    <p className="text-black text-opacity-75 my-3 text-sm md:text-base text-center">
-                        Doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi. Sed ut perspiciatis unde omnis iste natus error sit.
-                    </p>
-                    <Link href="/OnlineOrder"><button className="bg-black text-white rounded-sm text-sm md:text-xl font-bold px-4 py-2">
-                        ORDER ONLINE
-                    </button></Link>
-                </div>
-            </div>
+  return (
+    <div className="py-16 dark:text-white text-white bg-black">
+      {/* Header Section */}
+      <div className="flex flex-col lg:flex-row justify-between items-center max-w-6xl mx-auto px-8">
+        {/* Left Section */}
+        <div className="lg:w-1/2 text-center lg:text-left">
+          <p className="text-lg font-medium uppercase tracking-widest text-yellow-400">
+            Discover
+          </p>
+          <h1 className="text-5xl uppercase text-white font-bold">
+            𝕺𝖚𝖗 𝖒𝖊𝖓𝖚
+          </h1>
         </div>
-    );
+
+        {/* Right Section */}
+        <div className="lg:w-1/2 text-gray-300 mt-4 lg:mt-0">
+          <p className="leading-relaxed">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
+            voluptatum ullam temporibus, laboriosam praesentium dolor ducimus
+            autem distinctio dicta unde hic nobis necessitatibus, incidunt
+            voluptate est libero eligendi eaque! Nobis.
+          </p>
+        </div>
+      </div>
+
+      {/* Card Section */}
+
+      {/* 1st Card */}
+      <div className="flex flex-col lg:flex-row items-center justify-center max-w-5xl mx-auto mt-10 p-6 bg-opacity-30 bg-gray-900 rounded-xl shadow-lg">
+        {/* Image */}
+        <div className="w-full lg:w-1/2 flex justify-center">
+          <Image
+            src={bunWithHoney}
+            width={350}
+            height={250}
+            alt="Bun with honey"
+            className="rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+
+        {/* Content-1 */}
+        <div className="w-full lg:w-1/2 text-center lg:text-left p-6">
+          <h1 className="text-3xl font-semibold text-yellow-400">
+            𝑭𝒂𝒃𝒖𝒍𝒐𝒖𝒔 𝑩𝒓𝒆𝒂𝒌𝒇𝒂𝒔𝒕
+          </h1>
+          <p className="font-medium text-gray-300 mt-2">
+            Served the best food on the breakfast. Visit the menu to choose your
+            perfect breakfast.
+          </p>
+          <Link href="/OnlineOrder">
+            <button className="mt-4 px-5 py-2 bg-yellow-400 text-black font-semibold rounded-lg shadow-md hover:bg-yellow-500 transition-all">
+              View Menu
+            </button>
+          </Link>
+        </div>
+      </div>
+
+{/* 2nd Card */}
+
+      <div className="flex flex-col lg:flex-row items-center justify-center max-w-5xl mx-auto mt-10 p-6 bg-opacity-30 bg-gray-900 rounded-xl shadow-lg">
+
+
+        {/* Content-2 */}
+        <div className="w-full lg:w-1/2 text-center lg:text-left p-6">
+          <h1 className="text-3xl font-semibold text-yellow-400">
+          𝑳𝒖𝒙𝒖𝒓𝒊𝒐𝒖𝒔 𝑳𝒖𝒏𝒄𝒉
+          </h1>
+          <p className="font-medium text-gray-300 mt-2">
+            Enjoy a perfect lunch with a variety of dishes made with fresh ingredients.
+          </p>
+          <Link href="/OnlineOrder">
+            <button className="mt-4 px-5 py-2 bg-yellow-400 text-black font-semibold rounded-lg shadow-md hover:bg-yellow-500 transition-all">
+              View Menu
+            </button>
+          </Link>
+        </div>
+                {/* Image */}
+                <div className="w-full lg:w-1/2 flex justify-center">
+          <Image
+            src={biriyani}
+            width={350}
+            height={250}
+            alt="Bun with honey"
+            className="rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+      </div>
+
+
+      {/* 3rd Card */}
+      <div className="flex flex-col lg:flex-row items-center justify-center max-w-5xl mx-auto mt-10 p-6 bg-opacity-30 bg-gray-900 rounded-xl shadow-lg">
+        {/* Image */}
+        <div className="w-full lg:w-1/2 flex justify-center">
+          <Image
+            src={dinner}
+            width={350}
+            height={250}
+            alt="Bun with honey"
+            className="rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+
+        {/* Content-3 */}
+        <div className="w-full lg:w-1/2 text-center lg:text-left p-6">
+          <h1 className="text-3xl font-semibold text-yellow-400">
+          𝑬𝒍𝒆𝒈𝒂𝒏𝒕 𝑫𝒊𝒏𝒏𝒆𝒓
+
+          </h1>
+          <p className="font-medium text-gray-300 mt-2">
+          End your day with a delightful dinner from our carefully crafted menu.
+          </p>
+          <Link href="/OnlineOrder">
+            <button className="mt-4 px-5 py-2 bg-yellow-400 text-black font-semibold rounded-lg shadow-md hover:bg-yellow-500 transition-all">
+              View Menu
+            </button>
+          </Link>
+        </div>
+      </div>
+
+
+
+    </div>
+  );
 };
 
 export default ThreeCard;

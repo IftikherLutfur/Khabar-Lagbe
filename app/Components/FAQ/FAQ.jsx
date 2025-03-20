@@ -67,6 +67,7 @@ const FAQ = () => {
         </Disclosure>
       </div>
     </div>
+    
         </div>
     );
 };

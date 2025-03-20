@@ -1,10 +1,16 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
+
+//        <div>
+// <p className="text-lg font-medium uppercase tracking-widest text-yellow-400">Discover</p>
+// <h1 className="text-5xl uppercase text-white">𝕺𝖚𝖗 𝖒𝖊𝖓𝖚</h1>
+// </div>
 
 const DaliciousStory = () => {
   return (
-    <div className="dark:text-white text-white bg-black py-16">
+    <div className="dark:text-white text-white bg-zinc-950 py-16">
       {/* Main Content Section */}
       <div className="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto px-6">
         {/* Text Section */}
@@ -13,7 +19,7 @@ const DaliciousStory = () => {
             Discover
           </p>
           <h1 className="text-4xl font-extrabold mt-2 leading-tight">
-            Our Delicious Story
+          𝕺𝖚𝖗 𝕯𝖊𝖑𝖎𝖈𝖎𝖔𝖚𝖘 𝕾𝖙𝖔𝖗𝖞
           </h1>
           <p className="text-gray-300 mt-4 leading-relaxed">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab numquam
@@ -25,6 +31,10 @@ const DaliciousStory = () => {
             eaque quod atque explicabo numquam, perferendis omnis repellat
             corporis?
           </p>
+          <h1 className=' text-xl uppercase font-bold my-4 text-white cursor-pointer'><Link href={'/BookProgram'}>Reserve your table</Link>
+          
+          <hr  className="w-1/2"/>
+          </h1>
         </div>
 
         {/* Image Section */}
@@ -40,9 +50,9 @@ const DaliciousStory = () => {
       </div>
 
       {/* Info Section */}
-      <div className="flex flex-col md:flex-row justify-between items-center max-w-5xl mx-auto px-6 py-10 border-2 rounded-xl border-white mt-10 bg-gray-900 bg-opacity-40">
+      <div className="flex flex-col md:flex-row justify-between items-center max-w-5xl mx-auto px-6 py-2 border-2 rounded-xl border-white mt-10 bg-gray-900 bg-opacity-40">
         {/* Location */}
-        <div className="flex flex-col items-center text-center p-4">
+        <div className="flex flex-col items-center text-center p-2">
           <span className="text-yellow-400 text-2xl">📍</span>
           <h1 className="text-xl font-semibold mt-2">Locate Us</h1>
           <small className="text-gray-300">Uttara, Dhaka 1120</small>

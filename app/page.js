@@ -15,14 +15,7 @@ export default function Home() {
      <HomeComponent/>
      <DaliciousStory/>
      <FoodSlider/>
-     <div className="mt-5">
-     <div className="text-center">
-        <p className='text-xl font-bold text-orange-400'>──────────Book your program──────────</p>
-        <h1 className='text-4xl md:text-5xl uppercase font-bold my-4 text-white cursor-pointer'><Link href={'/BookProgram'}>Book</Link></h1>
-        <p className='text-xl font-bold text-orange-400'>/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /</p>
-       
-      </div>
-      </div> 
+    
      <ThreeCard/> 
      <FAQ/>
      <DoubleBanner/>

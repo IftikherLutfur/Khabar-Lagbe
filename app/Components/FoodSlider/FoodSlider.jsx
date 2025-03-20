@@ -43,7 +43,7 @@ export default function FoodSlider() {
 
   return (
     <div
-      className="wrapper relative flex items-center justify-center h-96 bg-cover pb-10 bg-center"
+      className="wrapper relative flex items-center justify-center h-[600px] bg-cover pb-10 bg-center"
       style={{
         backgroundImage:
           "url('https://galeriemagazine.com/wp-content/uploads/2021/11/NEW_MAIN_211107_F_KK_BG_0023_HighRes-1920x1200.jpg')",

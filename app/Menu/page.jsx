@@ -57,7 +57,7 @@ const FoodsPage = () => {
                 src={food.image || "https://grandrestaurantv6.b-cdn.net/grandrestaurantv6/demo9/wp-content/uploads/sites/9/2021/01/beef-burger.png"} 
                 alt={food.name} 
               />
-              <div className='text-lg font-bold text-orange-400 absolute ml-48'>{food.price} Tk</div>
+              <div className='text-lg  font-bold text-orange-400 absolute ml-64'>{food.price} Tk</div>
             </div>
             <div className='flex-1 text-center md:text-left'>
               <h1 className='text-lg sm:text-xl md:text-2xl uppercase font-bold'>{food.name}</h1>

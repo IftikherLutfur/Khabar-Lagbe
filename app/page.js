@@ -6,6 +6,7 @@ import DoubleBanner from "./Components/DoubleBanner/DoubleBanner";
 import Link from "next/link";
 import FAQ from "./Components/FAQ/FAQ";
 import DaliciousStory from "./Components/DaliciousStory/DaliciousStory";
+import BookProgram from "./BookProgram/page";
 // bg-[#08252b]
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
      <ThreeCard/> 
      <FAQ/>
      <DoubleBanner/>
+     <BookProgram/>
  
     </div>
   );

@@ -18,7 +18,7 @@ const AboutUs = () => {
         slides: { perView: 1 },
     })
     return (
-        <div className="pt-20 pb-10 min-h-screen px-5 bg-[#051a1f] lg:px-20">
+        <div className="pt-20 pb-10 min-h-screen px-5 bg-zinc-950 lg:px-20">
             {/* Hero Section */}
             <div className="flex flex-col lg:flex-row gap-10 items-center">
                 {/* Text Section */}

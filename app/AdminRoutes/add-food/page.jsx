@@ -1,60 +1,79 @@
 "use client";
 import React, { useState } from "react";
 import Sidebar from "../Sidebar";
-import { Form, Input, Button, Upload, Row, Col, message } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
+import { Form, Input, Button, Row, Col, message } from "antd";
 import axios from "axios";
 
-const image_hosting_key = process.env.NEXT_PUBLIC_IMAGE_HOSTING_KEY;
-const image_hosting = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
-
-const uploadImageToImgbb = async (imageFile) => {
-  const formData = new FormData();
-  formData.append("image", imageFile);
-
-  try {
-    const response = await axios.post(image_hosting, formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    return response.data.data.display_url; // Return uploaded image URL
-  } catch (error) {
-    console.error("Image upload failed:", error);
-    throw new Error("Failed to upload image. Please try again.");
-  }
-};
-
 const AddFood = () => {
-  const [imageUrl, setImageUrl] = useState(null);
+  const [profilePhoto, setProfilePhoto] = useState(null);
+  const [imagePreview, setImagePreview] = useState("");
+  const [ingredients, setIngredients] = useState("");
 
-  // Form submit handler
+  const image_hosting_key = process.env.NEXT_PUBLIC_IMAGE_HOSTING_KEY;
+  const image_hosting = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
+  // Function to upload image to imgbb
+  const uploadImageToImgbb = async (imageFile) => {
+    const formData = new FormData();
+    formData.append("image", imageFile);
+
+    try {
+      const response = await axios.post(image_hosting, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      return response.data.data.display_url; // Return uploaded image URL
+    } catch (error) {
+      console.error("Image upload failed:", error);
+      throw new Error("Failed to upload image. Please try again.");
+    }
+  };
+
+  // Handle form submission
   const onFinish = async (values) => {
     try {
-        // Upload image if not uploaded already
-        let uploadedImageUrl = imageUrl;
-        if (values.image && values.image[0]?.originFileObj) {
-            uploadedImageUrl = await uploadImageToImgbb(values.image[0]?.originFileObj);
-        }
+      if (!profilePhoto) {
+        message.error("Please upload a profile image.");
+        return;
+      }
 
-        const foodData = {
-            name: values.name,
-            price: values.price,
-            category: values.category,
-            description: values.description,
-            // image: uploadedImageUrl,  // Use the uploaded image URL
-        };
+      // Upload image first
+      const uploadedImageUrl = await uploadImageToImgbb(profilePhoto);
 
-        // Send POST request to the backend
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_WEB_URL}/api/foods`, foodData);
-        console.log(response);  // Log the response from the backend
+      // Convert the ingredients string into an array
+      const ingredientsArray = ingredients.split(",").map((item) => item.trim());
 
-        if (response.status === 200) {
-            message.success(response.data.message);
-        } else {
-            message.error(response.data.message || "Something went wrong!");
-        }
+      const foodData = {
+        name: values.name,
+        price: Number(values.price), // Ensure price is stored as a number
+        category: values.category,
+        description: values.description,
+        image: uploadedImageUrl, // Store uploaded image URL
+        ingredients: ingredientsArray, // Store ingredients as an array
+      };
+
+      // Send data to backend
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_WEB_URL}/api/foods`,
+        foodData
+      );
+
+      if (response.status === 200) {
+        message.success(response.data.message);
+      } else {
+        message.error(response.data.message || "Something went wrong!");
+      }
     } catch (error) {
-        console.error("Error submitting form:", error);
-        message.error("Failed to submit form!");
+      console.error("Error submitting form:", error);
+      message.error("Failed to submit form!");
+    }
+  };
+
+  // Handle image selection
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setProfilePhoto(file);
+      setImagePreview(URL.createObjectURL(file)); // Preview image
     }
   };
 
@@ -65,13 +84,8 @@ const AddFood = () => {
         <h1 className="text-black text-center my-2 text-2xl font-bold">
           Add a Food Item
         </h1>
-        <Form
-          name="food-form"
-          layout="vertical"
-          onFinish={onFinish} // Handle form submission
-        >
+        <Form name="food-form" layout="vertical" onFinish={onFinish}>
           <Row gutter={16}>
-            {/* Name */}
             <Col span={12}>
               <Form.Item
                 label="Name"
@@ -82,7 +96,6 @@ const AddFood = () => {
               </Form.Item>
             </Col>
 
-            {/* Price */}
             <Col span={12}>
               <Form.Item
                 label="Price (TK)"
@@ -95,7 +108,6 @@ const AddFood = () => {
           </Row>
 
           <Row gutter={16}>
-            {/* Category */}
             <Col span={12}>
               <Form.Item
                 label="Category"
@@ -107,21 +119,32 @@ const AddFood = () => {
             </Col>
           </Row>
 
-          {/* Image Upload */}
+          {/* Ingredients Input */}
           <Form.Item
-            label="Upload Image"
-            name="image"
-            valuePropName="fileList"
-            getValueFromEvent={(e) => e?.fileList}
-            rules={[{ required: true, message: "Please upload an image!" }]}
+            label="Ingredients"
+            name="ingredients"
+            rules={[{ required: true, message: "Please enter ingredients!" }]}
           >
-            <Upload beforeUpload={() => false} listType="picture" onChange={(info) => setImageUrl(info.fileList[0]?.originFileObj)}>
-              <Button icon={<UploadOutlined />}>Click to Upload</Button>
-            </Upload>
+            <Input
+              placeholder="Enter ingredients separated by commas"
+              value={ingredients}
+              onChange={(e) => setIngredients(e.target.value)}
+            />
+          </Form.Item>
+
+          {/* Image Upload */}
+          <Form.Item label="Profile Image" required>
+            <input type="file" accept="image/*" onChange={handleImageChange} />
+            {imagePreview && (
+              <img
+                src={imagePreview}
+                alt="Preview"
+                className="mt-2 w-32 h-32 rounded-lg border border-gray-300"
+              />
+            )}
           </Form.Item>
 
           <Row gutter={16}>
-            {/* Description */}
             <Col span={24}>
               <Form.Item
                 label="Description"

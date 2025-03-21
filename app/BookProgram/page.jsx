@@ -8,7 +8,7 @@ const BookProgram = async () => {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-cover bg-center relative py-12 px-4"
+      className="min-h-screen bg-fixed flex items-center justify-center bg-cover bg-center relative py-12 px-4"
       style={{ backgroundImage: "url('https://www.batihanvadi.com/content-image/galleries/auto-auto/113.jpg')" }}
     >
       {/* Black Overlay */}

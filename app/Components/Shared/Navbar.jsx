@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Menu, X } from "lucide-react"; // Icons for the hamburger menu
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
+import Image from 'next/image';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -36,12 +37,14 @@ const Navbar = () => {
                     {session.status === "authenticated" ? (
                         <div className="relative">
                             {/* User Image (Click to toggle options) */}
-                            <img
-                                className="w-[55px] h-[50px] rounded-full cursor-pointer"
-                                src={session?.data?.user?.image}
-                                alt="User"
-                                onClick={() => setShowUserOptions(!showUserOptions)}
-                            />
+                            <Image
+  className="w-[50px] h-[50px] rounded-full border-2 border-yellow-300 cursor-pointer object-cover"
+  src={session?.data?.user?.image || "/default-profile.png"} // Fallback image
+  width={50}  // Keep it square
+  height={50} // Keep it square
+  alt="User"
+  onClick={() => setShowUserOptions(!showUserOptions)}
+/>
 
                             {/* User Dropdown */}
                             {showUserOptions && (

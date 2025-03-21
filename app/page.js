@@ -11,7 +11,7 @@ import BookProgram from "./BookProgram/page";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-zinc-900 font-[family-name:var(--font-geist-sans)]">
+    <div className="min-h-screen bg-zinc-950 font-[family-name:var(--font-geist-sans)]">
 
      <HomeComponent/>
      <DaliciousStory/>

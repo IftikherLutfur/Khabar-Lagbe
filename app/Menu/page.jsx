@@ -27,6 +27,16 @@ const FoodsPage = () => {
     fetchFoods();
   }, []);
 
+  const breakfast = foods.filter(food=>food.category === "breakfast")
+  console.log(breakfast);
+  const lunch = foods.filter(food=>food.category === "lunch")
+  console.log(lunch);
+  const dinner = foods.filter(food=>food.category === "dinner")
+  console.log(dinner);
+  const fastfood = foods.filter(food=>food.category === "fastfood")
+  console.log(fastfood);
+  
+
   return (
     <div className='bg-zinc-900 text-white pt-20 pb-10 min-h-screen px-4'>
       {/* Section Header */}

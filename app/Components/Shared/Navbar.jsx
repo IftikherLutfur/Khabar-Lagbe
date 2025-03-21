@@ -11,9 +11,9 @@ const Navbar = () => {
     const session = useSession();
 
     return (
-        <div className="bg-zinc-800 bg-opacity-5 shadow-xl fixed w-full z-20">
+        <div className="bg-zinc-950 bg-opacity- shadow-xl fixed w-full z-20">
             {/* Navbar Container */}
-            <div className="flex items-center justify-between px-6 py-4">
+            <div className="flex items-center justify-between px-6 py-2">
                 {/* Logo */}
                 <h1 className="text-white text-2xl font-bold">HungryNaki?</h1>
 
@@ -27,12 +27,12 @@ const Navbar = () => {
 
                 {/* Links (Hidden on small screens, visible on medium and larger screens) */}
                 <ul className="hidden md:flex items-center space-x-8 text-white uppercase text-lg">
-                    <li className="hover:text-orange-400 cursor-pointer font-bold"><Link href={'/'}>Home</Link></li>
-                    <li className="hover:text-orange-400 cursor-pointer font-bold"><Link href="/Menu">Menu</Link></li>
-                    <li className="hover:text-orange-400 cursor-pointer font-bold">
+                    <li className="hover:text-yellow-400 cursor-pointer font-bold"><Link href={'/'}>Home</Link></li>
+                    <li className="hover:text-yellow-400 cursor-pointer font-bold"><Link href="/Menu">Menu</Link></li>
+                    <li className="hover:text-yellow-400 cursor-pointer font-bold">
                         <Link href="/OnlineOrder">Order Online</Link> </li>
-                    <li className="hover:text-orange-400 cursor-pointer font-bold"><Link href="/Components/AboutUs">About Us</Link></li>
-                    <li className="hover:text-orange-400 cursor-pointer font-bold">Contact Us</li>
+                    <li className="hover:text-yellow-400 cursor-pointer font-bold"><Link href="/Components/AboutUs">About Us</Link></li>
+                    <li className="hover:text-yellow-400 cursor-pointer font-bold">Contact Us</li>
 
                     {session.status === "authenticated" ? (
                         <div className="relative">
@@ -62,8 +62,8 @@ const Navbar = () => {
                         </div>
                     ) : (
                         <div className="bg-zinc-900 cursor-pointer rounded-md py-1 px-2">
-                            <button className="hover:text-orange-400 bg-zinc-900 border-r-2 px-2"><Link href={'/api/auth/signin'}>Login</Link></button>
-                            <button className="hover:text-orange-400 bg-zinc-900 px-2"><Link href={'/api/auth/signup'}>Register</Link></button>
+                            <button className="hover:text-yellow-400 bg-zinc-900 border-r-2 px-2"><Link href={'/api/auth/signin'}>Login</Link></button>
+                            <button className="hover:text-yellow-400 bg-zinc-900 px-2"><Link href={'/api/auth/signup'}>Register</Link></button>
                         </div>
                     )}
                 </ul>
@@ -72,20 +72,20 @@ const Navbar = () => {
             {/* Dropdown Menu (Visible on small screens when toggled) */}
             {isOpen && (
                 <ul className="md:hidden flex flex-col space-y-2 text-white uppercase text-lg bg-zinc-800 bg-opacity-90 px-6 py-4">
-                    <li className="hover:text-orange-400 cursor-pointer font-bold"><Link href={'/'}>Home</Link></li>
-                    <li className="hover:text-orange-400 cursor-pointer font-bold"><Link href="/Menu">Menu</Link></li>
-                    <li className="hover:text-orange-400 cursor-pointer font-bold">
+                    <li className="hover:text-yellow-400 cursor-pointer font-bold"><Link href={'/'}>Home</Link></li>
+                    <li className="hover:text-yellow-400 cursor-pointer font-bold"><Link href="/Menu">Menu</Link></li>
+                    <li className="hover:text-yellow-400 cursor-pointer font-bold">
                         <Link href="/OnlineOrder">Order Online</Link> </li>
-                    <li className="hover:text-orange-400 cursor-pointer"><Link href={'/AboutUs'}>About Us</Link></li>
-                    <li className="hover:text-orange-400 cursor-pointer">Contact Us</li>
+                    <li className="hover:text-yellow-400 cursor-pointer"><Link href={'/AboutUs'}>About Us</Link></li>
+                    <li className="hover:text-yellow-400 cursor-pointer">Contact Us</li>
                     {session.status === "authenticated" ? (
-                        <button onClick={() => signOut()} className="hover:text-orange-400 bg-zinc-900 px-2 rounded-md cursor-pointer">
+                        <button onClick={() => signOut()} className="hover:text-yellow-400 bg-zinc-900 px-2 rounded-md cursor-pointer">
                             Logout
                         </button>
                     ) : (
-                        <div className="hover:text-orange-400 bg-zinc-900 cursor-pointer px-2">
-                            <button className="hover:text-orange-400 bg-zinc-900 cursor-pointer px-2"><Link href={'/api/auth/signin'}>Login</Link></button>
-                            <button className="hover:text-orange-400 bg-zinc-900 cursor-pointer px-2"><Link href={'/api/auth/signup'}>Register</Link></button>
+                        <div className="hover:text-yellow-400 bg-zinc-900 cursor-pointer px-2">
+                            <button className="hover:text-yellow-400 bg-zinc-900 cursor-pointer px-2"><Link href={'/api/auth/signin'}>Login</Link></button>
+                            <button className="hover:text-yellow-400 bg-zinc-900 cursor-pointer px-2"><Link href={'/api/auth/signup'}>Register</Link></button>
                         </div>
                     )}
                 </ul>

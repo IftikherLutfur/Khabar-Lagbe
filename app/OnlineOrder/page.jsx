@@ -67,13 +67,13 @@ const OnlineOrder = () => {
         <div className="flex items-center gap-4">
           <button
             onClick={() => setSortOrder("asc")}
-            className="px-4 py-2 bg-orange-500 rounded-sm hover:bg-orange-400"
+            className="px-4 py-2 bg-yellow-400 rounded-sm hover:bg-yellow-500 text-black font-bold "
           >
             Low to High
           </button>
           <button
             onClick={() => setSortOrder("desc")}
-            className="px-4 py-2 bg-orange-500 rounded-sm hover:bg-orange-400"
+            className="px-4 py-2 bg-yellow-400 rounded-sm hover:bg-yellow-500 text-black font-bold"
           >
             High to Low
           </button>
@@ -94,7 +94,7 @@ const OnlineOrder = () => {
               <h1 className="text-2xl font-bold">{food.name}</h1>
             </div>
             <div className="mt-2">
-              <button className="bg-orange-500 px-4 py-2 uppercase rounded-sm w-full">
+              <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-4 py-2 uppercase rounded-sm w-full">
                 <Link href={`/OnlineOrder/${food._id}`}>Order</Link>
                 </button>
             </div>

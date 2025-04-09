@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "next/navigation"; // ✅ Import useParams()
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 const ConfirmOrder = () => {
     const { id } = useParams(); // ✅ Get id correctly
@@ -13,6 +14,10 @@ const ConfirmOrder = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const [extraQuantities, setExtraQuantities] = useState({ Water: 1, Coke: 1, Vegetables: 1 });
+
+    const session = useSession()
+    console.log(session?.data?.user?.email);
+
 
     // Extra items with prices
     const extras = [
@@ -30,11 +35,11 @@ const ConfirmOrder = () => {
                 const res = await axios.get(
                     `${process.env.NEXT_PUBLIC_WEB_URL}/api/foods/${id}`
                 );
-                console.log( `${process.env.NEXT_PUBLIC_WEB_URL}/api/foods/${id}`);
-                
+                console.log(`${process.env.NEXT_PUBLIC_WEB_URL}/api/foods/${id}`);
+
                 const fetchedFood = res.data.data;
                 console.log(res.data);
-                
+
                 setFood(fetchedFood);
                 setTotalPrice(fetchedFood.price);
             } catch (error) {
@@ -48,7 +53,7 @@ const ConfirmOrder = () => {
     }, [id]);
 
 
-   
+
 
     // const handlePayment = async () => {
     //     try {
@@ -56,7 +61,7 @@ const ConfirmOrder = () => {
     //         console.error("Invalid total price:", totalPrice);
     //         return alert("Total price must be greater than 0!");
     //       }
-      
+
     //       const customerDetails = {
     //         name: "Customer",  // replace with actual customer name
     //         email: "customer@example.com",  // replace with actual customer email
@@ -64,7 +69,7 @@ const ConfirmOrder = () => {
     //         phone: "01700000000",  // replace with actual phone number
     //         city: "Dhaka",  // replace with actual city
     //       };
-      
+
     //       const response = await fetch(`${process.env.NEXT_PUBLIC_WEB_URL}/api/payment`, {
     //         method: 'POST',
     //         body: JSON.stringify({
@@ -76,16 +81,16 @@ const ConfirmOrder = () => {
     //           'Content-Type': 'application/json',
     //         },
     //       });
-      
+
     //       const data = await response.json();
-      
+
     //       if (data?.url) {
     //         window.location.href = data.url; // Redirect to Mobile Banking payment page
     //       } else {
     //         console.error("Failed to get mobile banking payment URL:", data);
     //         alert("Payment initiation failed. Please try again.");
     //       }
-      
+
     //     } catch (error) {
     //       console.error("Payment error:", error);
     //       alert("Something went wrong while processing the payment.");
@@ -94,12 +99,31 @@ const ConfirmOrder = () => {
     // window.location.href = mblBankingUrl.gateway_url
 
     //   };
- 
+
 
     // handle fot add to cart
-    const handleForAddToCart = (totalPrice, food) =>{
-console.log(totalPrice);
-console.log(food.name);
+    const handleForAddToCart =async (totalPrice, food) => {
+        console.log(totalPrice);
+        console.log(session?.user?.email);
+
+        console.log(food.name);
+       try {
+        const cartDetails = {
+            amount: totalPrice,
+            foodName: food.name,
+            userEmail: session?.data?.user?.email
+
+        }
+
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_WEB_URL}/api/cart/post`, cartDetails)
+        if(res.status=== 200)
+            alert("Item added successfully")
+        else{
+            alert("Somthing went wrong")
+        }
+       } catch (error) {
+        console.error("Error adding data")
+       }
 
 
     }
@@ -196,8 +220,8 @@ console.log(food.name);
                         </div>
                     ))}
                 </div>
-                <button onClick={()=>handleForAddToCart(totalPrice, food)} className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 mt-4 rounded-lg shadow-md transition">
-                Add to cart
+                <button onClick={() => handleForAddToCart(totalPrice, food)} className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 mt-4 rounded-lg shadow-md transition">
+                    Add to cart
                 </button>
             </div>
         </div>
@@ -208,4 +232,3 @@ export default ConfirmOrder;
 
 
 
-  

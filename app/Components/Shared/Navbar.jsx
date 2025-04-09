@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react"; // Icons for the hamburger menu
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
+import { FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +12,8 @@ const Navbar = () => {
     const session = useSession();
 
     return (
-        <div className="bg-zinc-950 bg-opacity- shadow-xl fixed w-full z-20">
+        <div className="bg-zinc-950 bg-opacity- border-b-[1px] border-yellow-500 shadow-xl fixed w-full z-20">
+
             {/* Navbar Container */}
             <div className="flex items-center justify-between px-6 py-2">
                 {/* Logo */}
@@ -33,6 +35,13 @@ const Navbar = () => {
                         <Link href="/OnlineOrder">Order Online</Link> </li>
                     <li className="hover:text-yellow-400 cursor-pointer font-bold"><Link href="/Components/AboutUs">About Us</Link></li>
                     <li className="hover:text-yellow-400 cursor-pointer font-bold">Contact Us</li>
+                    <li className="relative group hover:text-yellow-400 text-2xl cursor-pointer font-bold">
+  <FaShoppingCart />
+  <p className="absolute text-xs -right-2 bottom-1 bg-black text-white rounded-full px-1 py-0.5  opacity-100 transition-opacity">
+    0
+  </p>
+</li>
+                    
 
                     {session.status === "authenticated" ? (
                         <div className="relative">

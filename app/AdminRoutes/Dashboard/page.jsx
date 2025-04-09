@@ -1,9 +1,32 @@
-import React from 'react';
+"use client"
+import React, { useEffect, useState } from 'react';
 import Sidebar from '../Sidebar';
+import axios from 'axios';
 
 const Dashboard = () => {
+    const [foods,setFoods] = useState([])
+    const [users,setUsers] = useState([])
+
+    useEffect(()=>{
+      const fetchFoods = async ()=>{
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_WEB_URL}/api/foods`)
+        setFoods(res.data.foods)
+        // console.log(res.data.foods);
+      }
+      fetchFoods()
+    },[])
+    useEffect(()=>{
+      const fetchUsers = async ()=>{
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_WEB_URL}/api/get-user`)
+        setUsers(res.data.users)
+        console.log(res.data.users);
+      }
+      fetchUsers()
+    },[])
+
+
     return (
-        <div className='bg-[#08252b] pt-20 min-h-screen'>
+        <div className='bg-zinc-950 flex gap-36 pt-20 min-h-screen'>
             {/* <aside className="flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-[#0b183d]  border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
                
 
@@ -31,7 +54,20 @@ const Dashboard = () => {
                     </nav>
                 </div>
             </aside> */}
+            <div>
             <Sidebar/>
+            </div>
+<div className='flex justify-center gap-14 mt-16'>
+    <div className='bg-yellow-400 hover:bg-yellow-500 h-20 w-36 text-center py-3 text-black font-semibold text-xl rounded-sm border-[2px] border-orange-500'>Foods 
+        <br /> {foods.length}
+    </div>
+    <div className='bg-yellow-400 hover:bg-yellow-500 h-20 w-36 text-center py-3 text-black font-semibold text-xl rounded-sm border-[2px] border-orange-500'>Users 
+    <br /> {users.length}</div>
+    <div className='bg-yellow-400 hover:bg-yellow-500 h-20 w-36 text-center py-3 text-black font-semibold text-xl rounded-sm border-[2px] border-orange-500'>Reviews <br />
+    10</div>
+    <div className='bg-yellow-400 hover:bg-yellow-500 h-20 w-36 text-center py-3 text-black font-semibold text-xl rounded-sm border-[2px] border-orange-500'>Revenue <br />
+    40000 tk</div>
+</div>
             
         </div>
     );

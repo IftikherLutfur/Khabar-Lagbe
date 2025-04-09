@@ -26,7 +26,7 @@ export default function HomeComponent() {
             transition={{ duration: 0.5 }}
             className="text-5xl md:text-7xl font-extrabold uppercase"
           >
-            HungryNaki Restaurant
+            𝑯𝑼𝑵𝑮𝑹𝒀 𝑵𝑨𝑲𝑰? Restaurant
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

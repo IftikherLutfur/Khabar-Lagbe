@@ -4,10 +4,16 @@ import { NextResponse } from "next/server";
 
 export const GET = async (request, { params }) => {
   try {
+    // Validate if the id exists and is a valid ObjectId
+    const { id } = params;
+    if (!id) {
+      return NextResponse.json({ message: "Invalid food ID" }, { status: 400 });
+    }
+
     const db = await ConnectDB();
     const foodCollection = db.collection("foods");
 
-    const food = await foodCollection.findOne({ _id: new ObjectId(params.id) });
+    const food = await foodCollection.findOne({ _id: new ObjectId(id) });
 
     if (!food) {
       return NextResponse.json({ message: "Food not found" }, { status: 404 });

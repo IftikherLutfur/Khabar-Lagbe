@@ -5,6 +5,7 @@ import axios from "axios";
 import { useParams } from "next/navigation"; // ✅ Import useParams()
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import toast, { Toaster } from "react-hot-toast";
 
 const ConfirmOrder = () => {
     const { id } = useParams(); // ✅ Get id correctly
@@ -15,9 +16,8 @@ const ConfirmOrder = () => {
     const [quantity, setQuantity] = useState(1);
     const [extraQuantities, setExtraQuantities] = useState({ Water: 1, Coke: 1, Vegetables: 1 });
 
-    const session = useSession()
+    const session = useSession();
     console.log(session?.data?.user?.email);
-
 
     // Extra items with prices
     const extras = [
@@ -44,6 +44,7 @@ const ConfirmOrder = () => {
                 setTotalPrice(fetchedFood.price);
             } catch (error) {
                 console.error("Error fetching food:", error.response ? error.response.data : error.message);
+                toast.error("Failed to fetch food details. Please try again.");
             } finally {
                 setLoading(false);
             }
@@ -52,81 +53,28 @@ const ConfirmOrder = () => {
         fetchFood();
     }, [id]);
 
-
-
-
-    // const handlePayment = async () => {
-    //     try {
-    //       if (!totalPrice || totalPrice <= 0) {
-    //         console.error("Invalid total price:", totalPrice);
-    //         return alert("Total price must be greater than 0!");
-    //       }
-
-    //       const customerDetails = {
-    //         name: "Customer",  // replace with actual customer name
-    //         email: "customer@example.com",  // replace with actual customer email
-    //         address1: "Dhaka",  // replace with actual customer address
-    //         phone: "01700000000",  // replace with actual phone number
-    //         city: "Dhaka",  // replace with actual city
-    //       };
-
-    //       const response = await fetch(`${process.env.NEXT_PUBLIC_WEB_URL}/api/payment`, {
-    //         method: 'POST',
-    //         body: JSON.stringify({
-    //           totalPrice,
-    //           productName: "Product Name",  // Example product name
-    //           customerDetails,
-    //         }),
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //         },
-    //       });
-
-    //       const data = await response.json();
-
-    //       if (data?.url) {
-    //         window.location.href = data.url; // Redirect to Mobile Banking payment page
-    //       } else {
-    //         console.error("Failed to get mobile banking payment URL:", data);
-    //         alert("Payment initiation failed. Please try again.");
-    //       }
-
-    //     } catch (error) {
-    //       console.error("Payment error:", error);
-    //       alert("Something went wrong while processing the payment.");
-    //     }
-
-    // window.location.href = mblBankingUrl.gateway_url
-
-    //   };
-
-
-    // handle fot add to cart
-    const handleForAddToCart =async (totalPrice, food) => {
+    const handleForAddToCart = async (totalPrice, food) => {
         console.log(totalPrice);
-        console.log(session?.user?.email);
 
-        console.log(food.name);
-       try {
-        const cartDetails = {
-            amount: totalPrice,
-            foodName: food.name,
-            userEmail: session?.data?.user?.email
+        try {
+            const cartDetails = {
+                amount: totalPrice,
+                foodName: food.name,
+                userEmail: session?.data?.user?.email,
+            };
 
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_WEB_URL}/api/cart/post`, cartDetails);
+
+            if (res.status === 200) {
+                toast.success("Item added successfully!");
+            } else {
+                toast.error("Something went wrong while adding to cart.");
+            }
+        } catch (error) {
+            console.error("Error adding data:", error);
+            toast.error("Failed to add item to cart. Please try again.");
         }
-
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_WEB_URL}/api/cart/post`, cartDetails)
-        if(res.status=== 200)
-            alert("Item added successfully")
-        else{
-            alert("Somthing went wrong")
-        }
-       } catch (error) {
-        console.error("Error adding data")
-       }
-
-
-    }
+    };
 
     // Handle quantity change
     const handleQuantity = async (type) => {
@@ -224,11 +172,9 @@ const ConfirmOrder = () => {
                     Add to cart
                 </button>
             </div>
+                <Toaster position="top-right" reverseOrder={false} /> {/* Toaster should be placed here */}
         </div>
     );
 };
 
 export default ConfirmOrder;
-
-
-

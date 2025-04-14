@@ -16,7 +16,7 @@ export const GET = async (req) => {
     // Update the payment status in the database
     await paymentCollection.updateOne({ transactionId: tran_id }, { $set: { status: "Success" } });
 
-    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_WEB_URL || process.env.NEXT_PUBLIC_DEPLOY_URL}/api/success`);
+    return NextResponse.redirect(`${process.env.NEXT_PUBLIC_WEB_URL}/api/success`);
   } catch (error) {
     console.error("Payment success handling error:", error);
     return NextResponse.json({ message: "Something went wrong" }, { status: 500 });

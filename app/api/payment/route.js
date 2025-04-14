@@ -26,9 +26,9 @@ export const POST = async (req) => {
       total_amount: totalPrice,
       currency: "BDT", // Bangladesh Taka (BDT)
       tran_id: transactionId, // Unique transaction ID
-      success_url: `${process.env.NEXT_PUBLIC_WEB_URL || process.env.NEXT_PUBLIC_DEPLOY_URL}/api/success?tran_id=${transactionId}`, // Success URL
-      fail_url: `${process.env.NEXT_PUBLIC_WEB_URL || process.env.NEXT_PUBLIC_DEPLOY_URL}/api/fail?tran_id=${transactionId}`, // Fail URL
-      cancel_url: `${process.env.NEXT_PUBLIC_WEB_URL || process.env.NEXT_PUBLIC_DEPLOY_URL}/api/cancel?tran_id=${transactionId}`, // Cancel URL
+      success_url: `${process.env.NEXT_PUBLIC_WEB_URL}/api/success?tran_id=${transactionId}`, // Success URL
+      fail_url: `${process.env.NEXT_PUBLIC_WEB_URL}/api/fail?tran_id=${transactionId}`, // Fail URL
+      cancel_url: `${process.env.NEXT_PUBLIC_WEB_URL}/api/cancel?tran_id=${transactionId}`, // Cancel URL
       shipping_method: "Courier", // Shipping method
       product_name: 'productName', // Product Name from frontend
       product_category: "General", // You can customize this

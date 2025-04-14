@@ -9,7 +9,7 @@ const Dashboard = () => {
 
     useEffect(()=>{
       const fetchFoods = async ()=>{
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_WEB_URL}/api/foods`)
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_WEB_URL || process.env.NEXT_PUBLIC_DEPLOY_URL}/api/foods`)
         setFoods(res.data.foods)
         // console.log(res.data.foods);
       }
@@ -17,7 +17,7 @@ const Dashboard = () => {
     },[])
     useEffect(()=>{
       const fetchUsers = async ()=>{
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_WEB_URL}/api/get-user`)
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_WEB_URL || process.env.NEXT_PUBLIC_DEPLOY_URL}/api/get-user`)
         setUsers(res.data.users)
         console.log(res.data.users);
       }

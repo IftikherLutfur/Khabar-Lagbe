@@ -81,7 +81,7 @@ const SignUp = () => {
       };
 
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_WEB_URL}/api/auth/signup/new-user`,
+        `${process.env.NEXT_PUBLIC_WEB_URL || process.env.NEXT_PUBLIC_DEPLOY_URL}/api/auth/signup/new-user`,
         newUser
       );
 

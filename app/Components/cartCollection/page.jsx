@@ -12,7 +12,7 @@ const ShowCart = () => {
     useEffect(() => {
         const fetchCartData = async () => {
             try {
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_WEB_URL}/api/cart/find?email=${email}`);
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_WEB_URL || process.env.NEXT_PUBLIC_DEPLOY_URL}/api/cart/find?email=${email}`);
                 if (res.status === 200) {
                     setCart(res.data.cartItems);
                 } else {

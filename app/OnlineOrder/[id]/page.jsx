@@ -33,9 +33,9 @@ const ConfirmOrder = () => {
         const fetchFood = async () => {
             try {
                 const res = await axios.get(
-                    `${process.env.NEXT_PUBLIC_WEB_URL}/api/foods/${id}`
+                    `${process.env.NEXT_PUBLIC_WEB_URL || process.env.NEXT_PUBLIC_DEPLOY_URL}/api/foods/${id}`
                 );
-                console.log(`${process.env.NEXT_PUBLIC_WEB_URL}/api/foods/${id}`);
+                console.log(`${process.env.NEXT_PUBLIC_WEB_URL || process.env.NEXT_PUBLIC_DEPLOY_URL}/api/foods/${id}`);
 
                 const fetchedFood = res.data.data;
                 console.log(res.data);
@@ -63,7 +63,7 @@ const ConfirmOrder = () => {
                 userEmail: session?.data?.user?.email,
             };
 
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_WEB_URL}/api/cart/post`, cartDetails);
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_WEB_URL || process.env.NEXT_PUBLIC_DEPLOY_URL}/api/cart/post`, cartDetails);
 
             if (res.status === 200) {
                 toast.success("Item added successfully!");

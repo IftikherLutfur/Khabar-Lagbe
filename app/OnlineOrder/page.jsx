@@ -14,7 +14,7 @@ const OnlineOrder = () => {
   useEffect(() => {
     const fetchFoods = async () => {
       try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_WEB_URL}/api/foods`);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_WEB_URL || process.env.NEXT_PUBLIC_DEPLOY_URL}/api/foods`);
         if (res.status === 200) {
           setFoods(res.data.foods);
           setSortedFoods(res.data.foods); // Initially set sorted foods to all foods

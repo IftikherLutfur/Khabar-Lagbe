@@ -77,11 +77,11 @@ const SignUp = () => {
         email: values.email,
         password: values.password,
         image: profilePhotoUrl,
-        type: "user",
+        type: "admin",
       };
 
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_WEB_URL}/api/auth/signup/new-user`,
+        `${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/auth/signup/new-user`,
         newUser
       );
 

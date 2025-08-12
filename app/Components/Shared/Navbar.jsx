@@ -1,15 +1,42 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, X } from "lucide-react"; // Icons for the hamburger menu
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { FaShoppingCart } from "react-icons/fa";
+import axios from 'axios';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [showUserOptions, setShowUserOptions] = useState(false);
     const session = useSession();
+    const email = session?.data?.user?.email;
+    const [cart, setCart] = useState([]);
+
+    useEffect(() => {
+        const fetchCartData = async () => {
+           
+            try {
+                const res = await axios.get(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/cart/find?email=${email}`);
+                if (res.status === 200) {
+                    setCart(res.data.cartItems);
+                    console.log(res.data);
+
+                } else {
+                    console.warn("No cart items found");
+                }
+            } catch (error) {
+                console.error("Error fetching cart data:", error);
+            } finally {
+                // setLoading(false);
+            }
+        };
+
+        if (email) {
+            fetchCartData();
+        }
+    }, [email]);
 
     return (
         <div className="bg-zinc-950 bg-opacity- border-b-[1px] border-yellow-500 shadow-xl fixed w-full z-20">
@@ -35,25 +62,26 @@ const Navbar = () => {
                         <Link href="/OnlineOrder">Order Online</Link> </li>
                     <li className="hover:text-yellow-400 cursor-pointer font-bold"><Link href="/Components/AboutUs">About Us</Link></li>
                     <li className="hover:text-yellow-400 cursor-pointer font-bold">Contact Us</li>
-                    <li className="relative group hover:text-yellow-400 text-2xl cursor-pointer font-bold">
-  <FaShoppingCart />
-  <p className="absolute text-xs -right-2 bottom-1 bg-black text-white rounded-full px-1 py-0.5  opacity-100 transition-opacity">
-    0
-  </p>
-</li>
-                    
+                    <Link href={"/Components/cartCollection"}>
+                        <li className="relative group hover:text-yellow-400 text-2xl cursor-pointer font-bold">
+                            <FaShoppingCart />
+                            <p className="absolute text-xs -right-2 bottom-1 bg-black text-white rounded-full px-1 py-0.5  opacity-100 transition-opacity">
+                                {cart.length}
+                            </p>
+                        </li></Link>
+
 
                     {session.status === "authenticated" ? (
                         <div className="relative">
                             {/* User Image (Click to toggle options) */}
                             <Image
-  className="w-[50px] h-[50px] rounded-full border-2 border-yellow-300 cursor-pointer object-cover"
-  src={session?.data?.user?.image || "/default-profile.png"} // Fallback image
-  width={50}  // Keep it square
-  height={50} // Keep it square
-  alt="User"
-  onClick={() => setShowUserOptions(!showUserOptions)}
-/>
+                                className="w-[50px] h-[50px] rounded-full border-2 border-yellow-300 cursor-pointer object-cover"
+                                src={session?.data?.user?.image} // Fallback image
+                                width={50}  // Keep it square
+                                height={50} // Keep it square
+                                alt="User"
+                                onClick={() => setShowUserOptions(!showUserOptions)}
+                            />
 
                             {/* User Dropdown */}
                             {showUserOptions && (

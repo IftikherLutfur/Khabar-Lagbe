@@ -9,14 +9,12 @@ import { Fragment } from 'react'
 
 const FoodsPage = () => {
   const [foods, setFoods] = useState([]);
-
-
   
 
   useEffect(() => {
     const fetchFoods = async () => {
       try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_WEB_URL}/api/foods`);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/foods`);
         if (res.status === 200) {
           setFoods(res.data.foods);
         } else {
@@ -30,13 +28,9 @@ const FoodsPage = () => {
   }, []);
 
   const breakfast = foods.filter(food=>food.category === "breakfast")
-  console.log(breakfast);
   const lunch = foods.filter(food=>food.category === "lunch")
-  console.log(lunch);
   const dinner = foods.filter(food=>food.category === "dinner")
-  console.log(dinner);
   const fastfood = foods.filter(food=>food.category === "fastfood")
-  console.log(fastfood);
   
 
   return (
@@ -89,7 +83,7 @@ const FoodsPage = () => {
             <div className='flex justify-center'>
               <img 
                 className='w-40 h-32 sm:w-48 sm:h-36 object-cover rounded-md' 
-                src={food.image || "https://grandrestaurantv6.b-cdn.net/grandrestaurantv6/demo9/wp-content/uploads/sites/9/2021/01/beef-burger.png"} 
+                src={food.image} 
                 alt={food.name} 
               />
               <div className='text-lg  font-bold text-orange-400 absolute ml-64'>{food.price} Tk</div>
@@ -126,7 +120,7 @@ const FoodsPage = () => {
             <div className='flex justify-center'>
               <img 
                 className='w-40 h-32 sm:w-48 sm:h-36 object-cover rounded-md' 
-                src={food.image || "https://grandrestaurantv6.b-cdn.net/grandrestaurantv6/demo9/wp-content/uploads/sites/9/2021/01/beef-burger.png"} 
+                src={food.image} 
                 alt={food.name} 
               />
               <div className='text-lg  font-bold text-orange-400 absolute ml-64'>{food.price} Tk</div>
@@ -163,7 +157,7 @@ const FoodsPage = () => {
             <div className='flex justify-center'>
               <img 
                 className='w-40 h-32 sm:w-48 sm:h-36 object-cover rounded-md' 
-                src={food.image || "https://grandrestaurantv6.b-cdn.net/grandrestaurantv6/demo9/wp-content/uploads/sites/9/2021/01/beef-burger.png"} 
+                src={food.image} 
                 alt={food.name} 
               />
               <div className='text-lg  font-bold text-orange-400 absolute ml-64'>{food.price} Tk</div>
@@ -200,7 +194,7 @@ const FoodsPage = () => {
             <div className='flex justify-center'>
               <img 
                 className='w-40 h-32 sm:w-48 sm:h-36 object-cover rounded-md' 
-                src={food.image || "https://grandrestaurantv6.b-cdn.net/grandrestaurantv6/demo9/wp-content/uploads/sites/9/2021/01/beef-burger.png"} 
+                src={food.image} 
                 alt={food.name} 
               />
               <div className='text-lg  font-bold text-orange-400 absolute ml-64'>{food.price} Tk</div>
@@ -237,7 +231,7 @@ const FoodsPage = () => {
             <div className='flex justify-center'>
               <img 
                 className='w-40 h-32 sm:w-48 sm:h-36 object-cover rounded-md' 
-                src={food.image || "https://grandrestaurantv6.b-cdn.net/grandrestaurantv6/demo9/wp-content/uploads/sites/9/2021/01/beef-burger.png"} 
+                src={food.image} 
                 alt={food.name} 
               />
               <div className='text-lg  font-bold text-orange-400 absolute ml-64'>{food.price} Tk</div>

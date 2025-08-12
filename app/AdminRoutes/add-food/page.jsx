@@ -53,7 +53,7 @@ const AddFood = () => {
 
       // Send data to backend
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_WEB_URL}/api/foods`,
+        `${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/foods`,
         foodData
       );
 

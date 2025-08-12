@@ -10,7 +10,7 @@ const Users = () => {
   useEffect(() => {
     const usersFetch = async () => {
       try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_WEB_URL}/api/get-user`);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/get-user`);
         setUsers(res.data.users || []); // Ensure we don't get undefined errors
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -26,7 +26,7 @@ const Users = () => {
     if (!isConfirmed) return;
 
     try {
-      const res = await axios.delete(`${process.env.NEXT_PUBLIC_WEB_URL}/api/delete-user`, {
+      const res = await axios.delete(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/delete-user`, {
         params: { id },
       });
 
@@ -47,7 +47,7 @@ const Users = () => {
     if (!id || !newType) return;
 
     try {
-      const res = await axios.patch(`${process.env.NEXT_PUBLIC_WEB_URL}/api/get-user`, {
+      const res = await axios.patch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/get-user`, {
         id,
         type: newType,
       });

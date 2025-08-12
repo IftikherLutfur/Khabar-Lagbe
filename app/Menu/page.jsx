@@ -9,7 +9,6 @@ import { Fragment } from 'react'
 
 const FoodsPage = () => {
   const [foods, setFoods] = useState([]);
-  
 
   useEffect(() => {
     const fetchFoods = async () => {

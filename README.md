@@ -33,8 +33,4 @@ HungryNaki is a modern restaurant web application where customers can browse the
 **Backend:**
 - [Express.js](https://expressjs.com/) – Node.js Backend Framework
 
-- 🧠 Author Iftikher Lutfur Abdullah
-
--🧑‍💻 Junior Full Stack Developer
-
-📧 iftikherlutfur@gmail.com
+🧠 Author Iftikher Lutfur Abdullah |🧑‍💻 Junior Full Stack Developer | 📧 iftikherlutfur@gmail.com

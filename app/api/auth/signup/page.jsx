@@ -77,7 +77,7 @@ const SignUp = () => {
         email: values.email,
         password: values.password,
         image: profilePhotoUrl,
-        type: "admin",
+        type: "user",
       };
 
       const res = await axios.post(

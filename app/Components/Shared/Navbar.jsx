@@ -61,11 +61,11 @@ const Navbar = () => {
                     <li className="hover:text-yellow-400 cursor-pointer font-bold">
                         <Link href="/OnlineOrder">Order Online</Link> </li>
                     <li className="hover:text-yellow-400 cursor-pointer font-bold"><Link href="/Components/AboutUs">About Us</Link></li>
-                    <li className="hover:text-yellow-400 cursor-pointer font-bold">Contact Us</li>
+                    <li className="hover:text-yellow-400 cursor-pointer font-bold"><Link href={"/Components/ContactUs"}>Contact Us</Link></li>
                     <Link href={"/Components/cartCollection"}>
-                        <li className="relative group hover:text-yellow-400 text-2xl cursor-pointer font-bold">
-                            <FaShoppingCart />
-                            <p className="absolute text-xs -right-2 bottom-1 bg-black text-white rounded-full px-1 py-0.5  opacity-100 transition-opacity">
+                        <li className={ cart.length > 0 ?"relative group hover:text-yellow-400 text-2xl cursor-pointer font-bold":"absolute hidden"}>
+                            {cart.length > 0 ? <FaShoppingCart /> : ""}
+                            <p className={cart.length > 0 ?"absolute text-xs -right-2 bottom-1 bg-black text-white rounded-full px-1 py-0.5  opacity-100 transition-opacity" : "hidden"}>
                                 {cart.length}
                             </p>
                         </li></Link>
@@ -113,8 +113,8 @@ const Navbar = () => {
                     <li className="hover:text-yellow-400 cursor-pointer font-bold"><Link href="/Menu">Menu</Link></li>
                     <li className="hover:text-yellow-400 cursor-pointer font-bold">
                         <Link href="/OnlineOrder">Order Online</Link> </li>
-                    <li className="hover:text-yellow-400 cursor-pointer"><Link href={'/AboutUs'}>About Us</Link></li>
-                    <li className="hover:text-yellow-400 cursor-pointer">Contact Us</li>
+                    <li className="hover:text-yellow-400 cursor-pointer"><Link href={'/Components/AboutUs'}>About Us</Link></li>
+                    <li className="hover:text-yellow-400 cursor-pointer"><Link href={"/Contatc"}></Link></li>
                     {session.status === "authenticated" ? (
                         <button onClick={() => signOut()} className="hover:text-yellow-400 bg-zinc-900 px-2 rounded-md cursor-pointer">
                             Logout

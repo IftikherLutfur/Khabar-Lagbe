@@ -55,14 +55,15 @@ const ThreeCard = () => {
             perfect breakfast.
           </p>
           <Link href="/OnlineOrder">
-            <button className="mt-4 px-5 py-2 bg-yellow-400 text-black font-semibold rounded-lg shadow-md hover:bg-yellow-500 transition-all">
-              View Menu
+            <button className="relative mt-4 px-5 py-2 bg-yellow-400 text-black font-semibold rounded-lg shadow-md overflow-hidden group">
+              <span className="absolute inset-0 bg-orange-400 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></span>
+              <span className="relative z-10">View Menu</span>
             </button>
           </Link>
         </div>
       </div>
 
-{/* 2nd Card */}
+      {/* 2nd Card */}
 
       <div className="flex flex-col lg:flex-row items-center justify-center max-w-5xl mx-auto mt-10 p-6 bg-opacity-30 bg-gray-900 rounded-xl shadow-lg">
 
@@ -70,19 +71,20 @@ const ThreeCard = () => {
         {/* Content-2 */}
         <div className="w-full lg:w-1/2 text-center lg:text-left p-6">
           <h1 className="text-3xl font-semibold text-yellow-400">
-          𝑳𝒖𝒙𝒖𝒓𝒊𝒐𝒖𝒔 𝑳𝒖𝒏𝒄𝒉
+            𝑳𝒖𝒙𝒖𝒓𝒊𝒐𝒖𝒔 𝑳𝒖𝒏𝒄𝒉
           </h1>
           <p className="font-medium text-gray-300 mt-2">
             Enjoy a perfect lunch with a variety of dishes made with fresh ingredients.
           </p>
           <Link href="/OnlineOrder">
-            <button className="mt-4 px-5 py-2 bg-yellow-400 text-black font-semibold rounded-lg shadow-md hover:bg-yellow-500 transition-all">
-              View Menu
+           <button className="relative mt-4 px-5 py-2 bg-yellow-400 text-black font-semibold rounded-lg shadow-md overflow-hidden group">
+              <span className="absolute inset-0 bg-orange-400 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></span>
+              <span className="relative z-10">View Menu</span>
             </button>
           </Link>
         </div>
-                {/* Image */}
-                <div className="w-full lg:w-1/2 flex justify-center">
+        {/* Image */}
+        <div className="w-full lg:w-1/2 flex justify-center">
           <Image
             src={biriyani}
             width={350}
@@ -110,15 +112,16 @@ const ThreeCard = () => {
         {/* Content-3 */}
         <div className="w-full lg:w-1/2 text-center lg:text-left p-6">
           <h1 className="text-3xl font-semibold text-yellow-400">
-          𝑬𝒍𝒆𝒈𝒂𝒏𝒕 𝑫𝒊𝒏𝒏𝒆𝒓
+            𝑬𝒍𝒆𝒈𝒂𝒏𝒕 𝑫𝒊𝒏𝒏𝒆𝒓
 
           </h1>
           <p className="font-medium text-gray-300 mt-2">
-          End your day with a delightful dinner from our carefully crafted menu.
+            End your day with a delightful dinner from our carefully crafted menu.
           </p>
           <Link href="/OnlineOrder">
-            <button className="mt-4 px-5 py-2 bg-yellow-400 text-black font-semibold rounded-lg shadow-md hover:bg-yellow-500 transition-all">
-              View Menu
+          <button className="relative mt-4 px-5 py-2 bg-yellow-400 text-black font-semibold rounded-lg shadow-md overflow-hidden group">
+              <span className="absolute inset-0 bg-orange-400 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></span>
+              <span className="relative z-10">View Menu</span>
             </button>
           </Link>
         </div>

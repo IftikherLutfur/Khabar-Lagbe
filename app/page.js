@@ -16,7 +16,6 @@ export default function Home() {
      <HomeComponent/>
      <DaliciousStory/>
      <FoodSlider/>
-    
      <ThreeCard/> 
      <FAQ/>
      <DoubleBanner/>

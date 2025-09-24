@@ -30,8 +30,9 @@ const DoubleBanner = () => {
               Doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi. Sed ut perspiciatis unde omnis iste natus error sit.
             </p>
             <div className="flex justify-center mt-8">
-              <button className="bg-red-600 font-bold text-white text-lg md:text-xl px-6 py-2 rounded-sm">
-                VIEW MENUS
+              <button className="relative bg-red-600 font-bold text-white text-lg md:text-xl px-6 py-2 rounded-sm overflow-hidden group">
+                <span className="absolute inset-0 bg-green-600 translate-y-full group-hover:translate-y-0 duration-500 ease-in-out"></span>
+                <span className="relative z-10">VIEW MENUS</span>
               </button>
             </div>
           </div>
@@ -53,9 +54,11 @@ const DoubleBanner = () => {
               Doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi. Sed ut perspiciatis unde omnis iste natus error sit.
             </p>
             <div className="flex justify-center mt-8">
-              <button className="bg-green-600 font-bold text-white text-lg md:text-xl px-6 py-2 rounded-sm">
-                VIEW MENUS
+              <button className="relative bg-green-600 font-bold text-white text-lg md:text-xl px-6 py-2 rounded-sm overflow-hidden group">
+                <span className="absolute inset-0 bg-red-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></span>
+                <span className="relative z-10">VIEW MENUS</span>
               </button>
+              
             </div>
           </div>
   

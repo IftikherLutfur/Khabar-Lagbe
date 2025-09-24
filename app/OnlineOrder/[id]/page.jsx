@@ -1,11 +1,11 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "next/navigation"; // ✅ Import useParams()
+import { useParams, useRouter } from "next/navigation"; // ✅ Import useParams()
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import toast, { Toaster } from "react-hot-toast";
+
 
 const ConfirmOrder = () => {
     const { id } = useParams(); // ✅ Get id correctly
@@ -15,6 +15,7 @@ const ConfirmOrder = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const [extraQuantities, setExtraQuantities] = useState({ Water: 1, Coke: 1, Vegetables: 1 });
+    const router = useRouter()
 
     const session = useSession();
 
@@ -62,6 +63,10 @@ const ConfirmOrder = () => {
             const res = await axios.post(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/cart/post`, cartDetails);
             if (res.status === 200) {
                 toast.success("Item added successfully!");
+                setTimeout(() => {
+                    router.push("/OnlineOrder");
+                }, 2000)
+
             } else {
                 toast.error("Something went wrong while adding to cart.");
             }
@@ -167,7 +172,7 @@ const ConfirmOrder = () => {
                     Add to cart
                 </button>
             </div>
-                <Toaster position="top-right" reverseOrder={false} /> {/* Toaster should be placed here */}
+            <Toaster position="top-right" reverseOrder={false} /> {/* Toaster should be placed here */}
         </div>
     );
 };

@@ -84,7 +84,7 @@ const OnlineOrder = () => {
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
         {sortedFoods.map((food) => (
           <div key={food._id} className="relative bg-zinc-800 p-4 rounded-lg overflow-hidden">
-            <div className='text-lg font-bold text-orange-400 absolute top-2 right-2 bg-zinc-900 rounded-md p-1'>{food.price} Tk</div>
+            <div className='text-lg font-bold text-white absolute top-2 right-2 bg-orange-800 bg-opacity-55 rounded-md p-1'>{food.price} Tk</div>
             <img 
               className="w-full h-56 object-cover rounded-lg" 
               src={food.image || "https://grandrestaurantv6.b-cdn.net/grandrestaurantv6/demo9/wp-content/uploads/sites/9/2021/01/beef-burger.png"} 

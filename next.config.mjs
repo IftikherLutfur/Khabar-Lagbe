@@ -7,7 +7,11 @@ const nextConfig = {
       "www.facebook.com",
       "scontent.fdac138-1.fna.fbcdn.net",
       "lh3.googleusercontent.com", // Add this line
-      'st5.depositphotos.com'
+      'st5.depositphotos.com',
+      'res.cloudinary.com',
+      'upload.wikimedia.org',
+      'cdn.prod.website-files.com',
+      'encrypted-tbn0.gstatic.com'
     ],
     remotePatterns: [
       {
